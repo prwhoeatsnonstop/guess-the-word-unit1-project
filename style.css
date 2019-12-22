@@ -1,0 +1,75 @@
+body {
+	background-color: pink;
+}
+
+.wrapper {
+	margin: 0 auto;
+	width: 50%;
+	text-align: center;
+	border: 3px solid green;
+	padding: 5px;
+}
+
+.wrong {
+	margin: 0 auto;
+	width: 50%;
+	text-align: center;
+	border: 3px solid green;
+	padding: 5px;
+}
+
+.starter {
+	margin: 0 auto;
+	width: 50%;
+	text-align: center;
+	border: 3px solid green;
+	padding: 5px;
+}
+
+.container {
+	margin: 0 auto;
+	width: 50%;
+	text-align: center;
+	border: 3px solid green;
+	padding: 5px;
+}
+
+.button:hover {
+  background-color: #d3d3d3;
+}
+
+.button {
+	display: inline-block;
+}
+
+.show {
+  display: block;
+}
+
+.hide {
+  display: none;
+}
+
+.uppercase {
+  text-transform: uppercase;
+
+}
+
+
+.message {
+  display: none;
+  padding: 20px;
+  position: absolute;
+  top: 110px;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  width: 100%;
+/*   height: 100%; */
+  background: darken($drk-blue, 10%);
+/*    this line will make background color appear tho*/
+  z-index: 12402402;
+}
+/* display none is totally remove from dom */
+
+/* visiblity hidden is make it disappear but it still occupies a space */

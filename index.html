@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>Guess The Word</title>
+    <link rel="stylesheet" type="text/css" href="style.css">
+    <link rel = "icon" href = "/Users/eunicelok/GA-projects/logo/guess.png" type = "image/x-icon">
+</head>
+<body>
+    <div class="wrapper">
+            <h1>
+                Guess the Word!
+            </h1>
+            <p class="instruct">
+                        <!-- Instructions: Press any alphabet key (A-Z, a-z) to start game. Non-alphabet keys are ignored. The theme of the game is 'Songs'. The game will randomly select a song from its internal list. It will then display a blank word using underscores to represent the letters in the word. It is possible to have a multi-word song.
+
+                        If a correct letter is guessed, the game will reveal the letter in its correct location. If an incorrect letter is selected, then it will add the letter to a list on incorrectly guessed letters and decrement the remaining guesses count.
+
+                        If the user guesses the correct song name before remaining guesses equal zero, then the game increments the number of wins and restarts the game by selecting a new random song title and reseting the game parameters.
+
+                        If the user does not guess the correct song name within the allocated number of guesses, then the game resets. -->
+            </p>
+
+            <p id="Songs">Songs from 1990s - 2019</p>
+    </div>
+            <!-- to make line appear and reappear accordingly -->
+            <p id="blankText"></p>
+
+            <div>
+                <input class="starter" id="input" maxlength="1" placeholder="Enter a letter"/>
+            </div>
+            <!-- within form tag can have any attribute that u want, can set minlength or maxlength and have a placeholder -->
+
+            <div class="wrong">
+                <div class="wrongLetters">Wrong letters</div>
+            </div>
+            <!-- to show user the wrong alphabet that they have key in, max 7 alphabets before time out -->
+            <div class="container">
+                <button class="button" id="hint1" onclick="playAudio()">Hint 1</button><br/>
+                <button class="button" id="hint2" onclick="wordHint()">Hint 2</button><br/>
+                <button class="button" id="reset" onclick="reset()">Reset</button>
+            </div>
+<!-- onload  Occurs when the current web page finishes loading -->
+        <script src="script.js"></script>
+</body>
+</html>
+
+<!-- <html>
+  <head>
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="style.css">
+  </head>
+  <body>
+    <input class="starter" id="input" placeholder="input"/>
+    <p class="starter" id="output"></p>
+    <script>
+      document.querySelector('#input').addEventListener('change', function(event){
+        var currentInput = event.target.value;
+        var output = inputHappened(currentInput);
+        display( output );
+      });
+      var display = function( data ){
+        var output = document.querySelector('#output');
+        output.innerText = data;
+      }
+    </script>
+    <script src="script.js"></script>
+  </body>
+</html> -->
+
+<!-- console.log("hello script js");
+
+var inputHappened = function(currentInput){
+  console.log( currentInput );
+  var output = "WOW SOMETHING HAPPENED";
+  return output;
+}; -->
