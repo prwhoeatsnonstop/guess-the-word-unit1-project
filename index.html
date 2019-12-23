@@ -4,14 +4,17 @@
     <meta charset="utf-8">
     <title>Guess The Word</title>
     <link rel="stylesheet" type="text/css" href="style.css">
-    <link rel = "icon" href = "/Users/eunicelok/GA-projects/logo/guess.png" type = "image/x-icon">
+    <link rel = "icon" href = "logo/guess.png" type = "image/x-icon">
+    <link href="https://fonts.googleapis.com/css?family=Mansalva|Permanent+Marker" rel="stylesheet">
 </head>
 <body>
-    <div class="wrapper">
+    <div id="wrapper">
             <h1>
                 Guess the Word!
             </h1>
-            <p class="instruct">
+            <p>
+                Songs from 1990s - 2019
+            </p>
                         <!-- Instructions: Press any alphabet key (A-Z, a-z) to start game. Non-alphabet keys are ignored. The theme of the game is 'Songs'. The game will randomly select a song from its internal list. It will then display a blank word using underscores to represent the letters in the word. It is possible to have a multi-word song.
 
                         If a correct letter is guessed, the game will reveal the letter in its correct location. If an incorrect letter is selected, then it will add the letter to a list on incorrectly guessed letters and decrement the remaining guesses count.
@@ -19,27 +22,81 @@
                         If the user guesses the correct song name before remaining guesses equal zero, then the game increments the number of wins and restarts the game by selecting a new random song title and reseting the game parameters.
 
                         If the user does not guess the correct song name within the allocated number of guesses, then the game resets. -->
-            </p>
-
-            <p id="Songs">Songs from 1990s - 2019</p>
     </div>
             <!-- to make line appear and reappear accordingly -->
-            <p id="blankText"></p>
+            <div id="sentences" class="section">
+                <ul class="has-wrap">
+                    <!-- <li class="letter"></li> -->
+                </ul>
 
-            <div>
-                <input class="starter" id="input" maxlength="1" placeholder="Enter a letter"/>
             </div>
-            <!-- within form tag can have any attribute that u want, can set minlength or maxlength and have a placeholder -->
+            <!-- within form tag can have any attribute that u want, can set minlength or maxlength and have a placeholder                <input class="starter" id="input" maxlength="1" placeholder="Enter a letter"/> -->
 
-            <div class="wrong">
-                <div class="wrongLetters">Wrong letters</div>
+            <div id="keyboard" class="section">
+                <div class="keyrow">
+                    <button class="button">q</button>
+                    <button class="button">w</button>
+                    <button class="button">e</button>
+                    <button class="button">r</button>
+                    <button class="button">t</button>
+                    <button class="button">y</button>
+                    <button class="button">u</button>
+                    <button class="button">i</button>
+                    <button class="button">o</button>
+                    <button class="button">p</button>
+                </div>
+                <div class="keyrow">
+                    <button class="button">a</button>
+                    <button class="button">s</button>
+                    <button class="button">d</button>
+                    <button class="button" >f</button>
+                    <button class="button">g</button>
+                    <button class="button">h</button>
+                    <button class="button">j</button>
+                    <button class="button">k</button>
+                    <button class="button">l</button>
+                </div>
+                    <div class="keyrow">
+                    <button class="button">z</button>
+                    <button class="button">x</button>
+                    <button class="button">c</button>
+                    <button class="button">v</button>
+                    <button class="button">b</button>
+                    <button class="button">n</button>
+                    <button class="button">m</button>
+                </div>
+
             </div>
-            <!-- to show user the wrong alphabet that they have key in, max 7 alphabets before time out -->
-            <div class="container">
-                <button class="button" id="hint1" onclick="playAudio()">Hint 1</button><br/>
-                <button class="button" id="hint2" onclick="wordHint()">Hint 2</button><br/>
-                <button class="button" id="reset" onclick="reset()">Reset</button>
+
+            <div id="scoreboard" class="section">
+                <ol>
+                    <li class="tries"><img src="logo/drums.png" height="35px" width="30px"></li>
+                    <li class="tries"><img src="logo/drums.png" height="35px" width="30px"></li>
+                    <li class="tries"><img src="logo/drums.png" height="35px" width="30px"></li>
+                    <li class="tries"><img src="logo/drums.png" height="35px" width="30px"></li>
+                    <li class="tries"><img src="logo/drums.png" height="35px" width="30px"></li>
+                    <li class="tries"><img src="logo/drums.png" height="35px" width="30px"></li>
+                    <li class="tries"><img src="logo/drums.png" height="35px" width="30px"></li>
+                </ol>
+
             </div>
+
+            <div class="wrapper">
+                <div id="buttons">
+                </div>
+                <p id="categoryName"></p>
+                <div id="keyboard"></div>
+
+                <div id="hold"></div>
+                <p id="mylives"></p>
+                <div class="container">
+                    <button class="button" id="reset" onclick="location.reload()">Reset</button>
+                    <button class="button" id="hint1" onclick="hintAudios.play()">Hint 1</button>
+                    <button class="button" id="hint2">Hint 2</button>
+                </div>
+            </div>
+            <div id="overlay" class="start"></div>
+
 <!-- onload  Occurs when the current web page finishes loading -->
         <script src="script.js"></script>
 </body>
