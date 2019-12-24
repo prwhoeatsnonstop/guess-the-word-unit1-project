@@ -1,13 +1,33 @@
-body {
-	background-color: pink;
+/*body {
+/*	background-image: url("logo/radio.png");
+	background-repeat: no-repeat;*/
+/*	so that image doesnt repeat itself
+	background-color:  #EB5C7D;
+	color: #2B85EA;
+	height: 100%;
+	text-align: center;
+	width: 100%;
+	background-size: 100%;*/
+/*}*/
+
+/*p {
+	margin-top: -20px;
+	font-size: 30px;
 }
 
 .wrapper {
 	margin: 0 auto;
-	width: 50%;
+	width: 100%;
 	text-align: center;
-	border: 3px solid green;
 	padding: 5px;
+}
+
+.show {
+  display: block;
+}
+
+.hide {
+  display: none;
 }
 
 .wrong {
@@ -18,31 +38,28 @@ body {
 	padding: 5px;
 }
 
-.starter {
-	margin: 0 auto;
-	width: 50%;
-	text-align: center;
-	border: 3px solid green;
-	padding: 5px;
-}
 
 .container {
-	margin: 0 auto;
-	width: 50%;
-	text-align: center;
-	border: 3px solid green;
-	padding: 5px;
+	font-size: 14px;
+	justify-content: center;
+	align-items: center;
+	padding-bottom: 10px;
+	margin-top: -40px;
 }
-
+*/
 .button:hover {
   background-color: #d3d3d3;
 }
 
-.button {
+/*.button {
 	display: inline-block;
-}
+	border: 1px solid black;
+	text-decoration: none;
+	text-align: center;
+	justify-content: center;
+}*/
 
-.show {
+/*.show {
   display: block;
 }
 
@@ -66,10 +83,10 @@ body {
   bottom: 0;
   width: 100%;
 /*   height: 100%; */
-  background: darken($drk-blue, 10%);
-/*    this line will make background color appear tho*/
+  /*background: darken($drk-blue, 10%);
+    this line will make background color appear tho
   z-index: 12402402;
-}
+}*/
 /* display none is totally remove from dom */
 
 /* visiblity hidden is make it disappear but it still occupies a space */
