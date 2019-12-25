@@ -1,273 +1,95 @@
-console.log("Hi");
-//sharon suggest do winning condition first
-//list of variables needed
-var pauseGame = false; // duno for what yet
-var guessedLetters = []; //after splice/slice to store here id is blankText "_""_"_"_
-var tries = 7; // once tries === 0. it loses
-var numOfCorrectGuesses = []; // might not need this. make a counter to store how many rounds have they won, once it hits 16 rounds, prompt or make message appear, you're champion. but each round when win, may or may not prompt u win before proceeding to next turn, this one to store after every space in blankText has been filled with correct letters
-var ranNum; // for later,to generate different songs for each round
-// var alphabetToBeTypeIn = "abcdefghijklmnopqrstuvwxyz".split("");// maybe need this to create a-z keyboard button or dun need if use input then enter
-var blankText = "<ul>"; // for later, this creates a ul to store li later or think of a way to make like if totalSong[i] = "", blankText appear as "", if got letter, appear as "_". after that need to hide the "_" and make letters appear or vice versa
-var songList = ["all we know", //audio1
-                // "apologize", //audio2
-                // "bad liar", //audio3
-                // "everything i need", //audio4
-                // "good life", //audio5
-                // "happier", //audio6
-                // "in my place", //audio7
-                // "move along", //audio8
-                // "numb", //audio9
-                // "outside", //audio10
-                // "pumped up kicks", //audio11
-                // "secrets", //audio12
-                // "solo dance", //audio13
-                // "someday", //audio14
-                // "superheroes", //audio15
-                // "the reason", //audio16
-                ];
+console.log("hello script js");
 
-var lettersUl = document.querySelector("ul"); //create ul for lettersLi
-var lettersLi = document.querySelector("li"); //create li to store answers
-var letters = document.querySelector("p"); // create p for user to type answers later, to append it to answerLi
-lettersLi.appendChild(letters);
-lettersUl.appendChild(lettersLi);
-document.querySelector("#sentences").appendChild(lettersUl); // then we append the unordered list to the div that is having a class name of sentences
+var regexLetter = /^[a-zA-Z]+$/; // regular expressions always contained between 2 forward slash []means range from a-z lowercase and A-Z uppercase, + is unlimited, ^ is beginning of string, $ is end of string
+var songs =     ["all we know",//audio1
+                 "apologize",//audio2
+                 "bad liar",//audio3
+                 "everything i need",//audio4
+                 "good life",//audio5
+                 "happier",//audio6
+                 "in my place",//audio7
+                 "move along",//audio8
+                 "numb",//audio9
+                 "outside",//audio10
+                 "pumped up kicks",//audio11
+                 "secrets",//audio12
+                 "solo dance",//audio13
+                 "someday",//audio14
+                 "superheroes",//audio15
+                 "the reason",//audio16
+];
+// using Math.random and Math.floor to pick a random word from the words array
+var randWord;
+var wins = 0;
+var loss = 0;
+var wrongLetter = [];
+var guessesLeft = 9;
+var underScores = [];
+var userGuesses = [];
+var initflipTable = "(╯ರ~ರ）╯︵┻━┻";
+var flipTable = initflipTable.split("");
+var lives = ["🎹", "🎹", "🎹", "🎹", "🎹", "🎹"] //split the characters of flipTable
+var outputToPlayer = "";
+var gameOver = false;
+var loserFlipTable = []; // to store characters of losing flipTable
 
-letters.innerHTML = songList[0].split("");
+//Functions
+
+function startGame () {
+    //picks random word
+    randWord = songs[Math.floor(Math.random() * songs.length)];
+    console.log(randWord); //check if random songs do appear
+    console.log(randWord.length); //check if length of random word is same
+
+    for (var i = 0; i < randWord.length; i++) {
+        underScores.push("_");
+        console.log(underScores);
+    }
+    document.getElementById("word-blanks");
+}
+
+//Main
+startGame();
 
 
-// i want to achieve smth like each letter in correct ans same as each letter in songList[i].split, but notice it seems to be comparing length of corrAns1inthelines with strings in songList[i].split
-// var corrAns1inthelines === songList[0].split("");
-// var corrAns2inthelines === songList[1].split("");
-// var corrAns3inthelines === songList[2].split("");
-// var corrAns4inthelines === songList[3].split("");
-// var corrAns5inthelines === songList[4].split("");
-
-//****can refer this one
-// var arrayLength = songList.length;
-
-// //to split each song list into individual letters
-// function toSplitLetters()
-//     {for (var i = 0; i < arrayLength; i++) {
-//         console.log(songList[i]); //making sure it splits songs into individual songs first coz somehow in console, arrays are being treated as object
-//         var individualAns = songList[i].split("");//splitting each song into individual letters
-//         console.log(individualAns);
-//     };
-// };
-
-// toSplitLetters();
-//****up till here for smth but feel not useful
-
-// function that checks if the num of guessedLetters === answer in the form of splitLetters, if yes, win. if guessedLetters is not equal to answer in the form of split letters, add that letter to array that stores wrongLetters. then check the length of wrongletters, once === 7, you lose. restart
-// function if1stlettercorrectlyguessedAllowusertocontinueguessinguntilTheyFulfillAllLettersThenWin,maybe need counter ++ here to store how many rounds they got it correctly.
-
-// function if1stLetterwronglyguessed,still allow user to key in letters till wronglyguessed.length === 7, then lose and need restart the game
-
-// function checkWinForEachTurn() {
-//     if (guessedLetters === numOftoSplitLetters) {
-//         console.log("You win")
-//     } else if (guessedLetters === wrongLetters) {
-//         console.log ("you lose this turn");
+// if length of correctGuesses === length of secretWord, player wins!
+// var checkWin = function() {
+//     if (currentInput === secretWord.lengt) {
+//         outputToPlayer += "You win!";
+//         // The addition assignment operator (+=) adds a value to a variable, like concatenates to what was initially there at the variable
+//         gameOver = true;
 //     }
 // }
 
-// function checkForUltimateWin() {
-//     if (numOfCorrectGuesses === 16) {
-//         console.log("You're the champion");
+// //if flipTable.length === 0 (means no more characters left), player loses!
+// var checkLose = function() {
+//     if (flipTable.length === 0) {
+//         outputToPlayer += "You lose!";
+//         gameOver = true;
 //     }
 // }
 
-
-
-// // to get individual songs to be split later
-
-
-// var resetBtn;
-// // id is "#reset" button for user to click and this button will have event listener 'click' which has a function that will run if user wana play again
-
-// var hint1Btn;
-// // id is "hint1" button for user to click and will have event listener 'click' with a function that shows 1st hint
-
-// var hint2Btn;
-//id is "hint 2" button for user to click and will have event listener 'click' with a function that shows 2nd hint
-// for (i = 0, i < songList.i, i++) {
-// songList[i].split("");} // will return ["b", "a", "d", "", "l","i","a","r"]
-// // document.getElementById("example").innerHTML = "Hello world!"; probably need this to check content of input/output
-
-// for (i = 0; i < totalSong.length; i++) {
-//     blankText += "<li>" + songList[i].split("") + "<li>";
-// }
-
-// blankText += "<ul>";
-// document.getElementById("blankText").innerHTML = blankText;
-
-//       var display = function( data ){
-//         var output = document.querySelector('.blankText');
-//         output.innerText = data;}
-// var a;
-// a = 5;
-// document.getElementById("blankText").innerHTML = a * 8;
-
-// var wrongLetters = document.getElementByClass("wrong").innerHTML = "";
-// if keyinletter !== answer {
-// check again if class wrong has been is in the desired html element
-// }
-
-
-// document.getElementById("display").innerHTML = "" or document.getElementById("display").innerHTML = "_" (some code for the --- to apear and --- ---)for this part, tbc
-// var correctlyguessedWord = songList(0,0);
-// if correctlyguessedWord.length === 15, u win.
-
-// function playAudio() {
-//   x.play();
-// }
-// x.addEventListener('click', playAudio);
-//then in winning conditon can do smth like songList[0],split(""), it'll come out
-
-//randomly chooses a word from wordList
-// var song = songList[Math.floor(Math.random() * songList.length)]; //can splice it later once a song has been guessed
-// var numOfCorrectGuesses = []; // this will store the right answer
-// var totalNumOfAns = [];
-
-// var guessingLines;
-// guessing lines in a way should be the same as correct answer? and this button will have event listener is smth load or smth appear with a function where letters appear when it matches the correct answer. but first version should be as letters being click, guessing lines should appear same letter.
-
-// var typedLetters;
-// can only key in 1 letter at a time, find a way to stop them from keying in more than a letter ,done with html maxlength
-
-// var guessBtn;
-//this button has the function to erase/remove current letter in the typedLetter button, and also to check if letter key in same as correct answer at answerLines, at the same time to check if letter key in is wrong, store at somewhere as a way to increase counter of losing and maybe display out the wrongly guessed letter if want to assist user, and also need to decrease lives to show how many lives user left/ and need to take the value that is in guessBtn to pass it to answerLines first, then check and see if the letter matches the answer
-
-
-
-//list of functions to make things happen
-
-// function makeLinesAppearSameAsCorrectAnswer() {};
-// // at game start to already display the number of lines, in a way like giving showing hint to user that they can see how many letters to be guessed
-
-// function wheneverUserClicksOnTheClickedLetterTheSameLetterShouldAppearOnTheLine() {};
-// //to test if user clicked on the alphabet, assuming same letter should appear on line, no winning logic yet
-
-// function checkifClickedLetterSameAsTheLinesWhereUserCanGuessed() {};
-// //to countercheck that the letter that user keys in is same as correct answer. Lines should in a way represent correct letters
-
-// function if1stlettercorrectlyguessedAllowusertocontinueguessinguntillose() {};
-// //if 1st letter has been guessed correctly, allow user to continue guessing the next letter,otherwise, if next round finishes the lives, game over
-
-// function if1stletteriswronglyguessedstillallowusertocontinueguessing() {};
-// //if 1st letter is wrongly guessed, allow user to continue playing while still have lives, otherwise, game over
-
-// function tocheckifnumofwronglyguessedlettersequalto5timeswhereuserhasclick() {};
-// // if numOfWronglyGuessedTime.length === gameover.length, alert user loses;
-
-// function checkifClickedLetterSameAsTheLinesWhereUserCanGuessed() {};
-// function checkifClickedLetterSameAsTheLinesWhereUserCanGuessed() {};
-// function checkifClickedLetterSameAsTheLinesWhereUserCanGuessed() {};
-// function checkifClickedLetterSameAsTheLinesWhereUserCanGuessed() {};
-// function checkifClickedLetterSameAsTheLinesWhereUserCanGuessed() {};
-// function checkifClickedLetterSameAsTheLinesWhereUserCanGuessed() {};
-
-// let item = document.querySelector('#item');
-// var button = document.querySelector('#button');
-
-// var doSomething = function() {
-//   item.classList = "hide"
-// }
-// button.addEventListener('click', doSomething);
-
-//can try setTimeout(call the function, 10000);
-
-
-
-    // Wait for key press
-    // document.onkeypress = function(event) {
-    //     // Make sure key pressed is an alpha character
-    //     if (isAlpha(event.key) && !pauseGame) {
-    //         checkForLetter(event.key.toUpperCase())
-    //     }
-    // }
-
-    // // Game Functions
-    // // Check if letter is in word & process
-    // function checkForLetter(letter) {
-    //     var foundLetter = false
-    //     var correctSound = document.createElement("audio")
-    //     var incorrectSound = document.createElement("audio")
-    //     correctSound.setAttribute("src", "assets/sounds/stairs.mp3")
-    //     incorrectSound.setAttribute("src","assets/sounds/croak.mp3")
-
-        // // Search string for letter
-        // for (var i=0, j= wordToMatch.length; i<j; i++) {
-        //     if (letter === wordToMatch[i]) {
-        //         guessingWord[i] = letter
-        //         foundLetter = true
-        //         correctSound.play()
-        //         // If guessing word matches random word
-        //         if (guessingWord.join("") === wordToMatch) {
-        //             // Increment # of wins
-        //             wins++
-        //             pauseGame = true
-        //             updateDisplay()
-        //             setTimeout(resetGame,5000)
-        //         }
-        //     }
-        // }
-
-        // if (!foundLetter) {
-        //     incorrectSound.play()
-        //     // Check if inccorrect guess is already on the list
-        //     if (!guessedLetters.includes(letter)) {
-        //         // Add incorrect letter to guessed letter list
-        //         guessedLetters.push(letter)
-        //         // Decrement the number of remaining guesses
-        //         numGuess--
-        //     }
-    //         if (numGuess === 0) {
-    //             // Display word before reseting game
-    //             guessingWord = wordToMatch.split()
-    //             pauseGame = true
-    //             setTimeout(resetGame, 5000)
-    //         }
-    //     }
-
-    //     updateDisplay()
-
-    // }
-    // // Check in keypressed is between A-Z or a-z
-    // function isAlpha (ch){
-    //     return /^[A-Z]$/i.test(ch);
-    // }
-
-    // function resetGame() {
-    //     numGuess = maxGuess
-    //     pauseGame = false
-
-    //     // Get a new word
-    //     wordToMatch = possibleWords[Math.floor(Math.random() * possibleWords.length)].toUpperCase()
-    //     console.log(wordToMatch)
-
-    //     // Reset word arrays
-    //     guessedLetters = []
-    //     guessingWord = []
-
-//         // Reset the guessed word
-//         for (var i=0, j=wordToMatch.length; i < j; i++){
-//             // Put a space instead of an underscore between multi word "words"
-//             if (wordToMatch[i] === " ") {
-//                 guessingWord.push(" ")
-//             } else {
-//                 guessingWord.push("_")
-//             }
-//         }
-
-//         // Update the Display
-//         updateDisplay()
+// var checkFirstLetter = function() {
+//     if (currentInput.toLowerCase() === secretWord[0] && counter === 0) {
+//         console.log("You got the first letter right! Keep going");
+//     } else if (currentInput.toLowerCase() !== secretWord[0] && counter === 0) {
+//         console.log("Please try another letter");
+//     }
 //     }
 
-//     function updateDisplay () {
-//         document.getElementById("totalWins").innerText = wins
-//         document.getElementById("currentWord").innerText = guessingWord.join("")
-//         document.getElementById("remainingGuesses").innerText = numGuess
-//         document.getElementById("guessedLetters").innerText =  guessedLetters.join(" ")
+// var checkSecondLetter = function() {
+//     if ((currentInput.toLowerCase() === secretWord[0] && counter === 0) && (currentInput.toLowerCase() === secretWord[1] && counter === 1)) {
+//         console.log("You got the 2nd letter! Keep going!");
 //     }
-// })
+// }
+
+// var checkThirdLetter = function() {
+//     if ((currentInput.toLowerCase() === secretWord[0] && counter === 0) && (currentInput.toLowerCase() === secretWord[1] && counter === 1) && (currentInput.toLowerCase() === secretWord[2] && counter === 2)) {
+//         console.log("You got the 3rd letter! Keep going!");
+//     }
+// }
+
+// var inputHappened = function(currentInput){
+//   console.log( currentInput );
+//   return "🎹";
+// };Akira's starter code
