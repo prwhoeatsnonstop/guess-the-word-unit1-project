@@ -23,7 +23,7 @@ var randWord;
 var wins = 0;
 var loss = 0;
 var wrongLetter = [];
-var guessesLeft = 9;
+var guessesLeft = 9; //there's another html id with same name so that easier to reference
 var underScores = [];
 var userGuesses = [];
 var initflipTable = "(╯ರ~ರ）╯︵┻━┻";
@@ -32,64 +32,12 @@ var lives = ["🎹", "🎹", "🎹", "🎹", "🎹", "🎹"] //split the charact
 var outputToPlayer = "";
 var gameOver = false;
 var loserFlipTable = []; // to store characters of losing flipTable
+var winCounter = 0;
 
 //Functions
 
-function startGame () {
-    //picks random word
-    randWord = songs[Math.floor(Math.random() * songs.length)];
-    console.log(randWord); //check if random songs do appear
-    console.log(randWord.length); //check if length of random word is same
 
-    for (var i = 0; i < randWord.length; i++) {
-        underScores.push("_");
-        console.log(underScores);
-    }
-    document.getElementById("word-blanks");
-}
-
-//Main
-startGame();
-
-
-// if length of correctGuesses === length of secretWord, player wins!
-// var checkWin = function() {
-//     if (currentInput === secretWord.lengt) {
-//         outputToPlayer += "You win!";
-//         // The addition assignment operator (+=) adds a value to a variable, like concatenates to what was initially there at the variable
-//         gameOver = true;
-//     }
-// }
-
-// //if flipTable.length === 0 (means no more characters left), player loses!
-// var checkLose = function() {
-//     if (flipTable.length === 0) {
-//         outputToPlayer += "You lose!";
-//         gameOver = true;
-//     }
-// }
-
-// var checkFirstLetter = function() {
-//     if (currentInput.toLowerCase() === secretWord[0] && counter === 0) {
-//         console.log("You got the first letter right! Keep going");
-//     } else if (currentInput.toLowerCase() !== secretWord[0] && counter === 0) {
-//         console.log("Please try another letter");
-//     }
-//     }
-
-// var checkSecondLetter = function() {
-//     if ((currentInput.toLowerCase() === secretWord[0] && counter === 0) && (currentInput.toLowerCase() === secretWord[1] && counter === 1)) {
-//         console.log("You got the 2nd letter! Keep going!");
-//     }
-// }
-
-// var checkThirdLetter = function() {
-//     if ((currentInput.toLowerCase() === secretWord[0] && counter === 0) && (currentInput.toLowerCase() === secretWord[1] && counter === 1) && (currentInput.toLowerCase() === secretWord[2] && counter === 2)) {
-//         console.log("You got the 3rd letter! Keep going!");
-//     }
-// }
-
-// var inputHappened = function(currentInput){
-//   console.log( currentInput );
-//   return "🎹";
-// };Akira's starter code
+var inputHappened = function(currentInput){
+  console.log( currentInput );
+  return currentInput;
+};
