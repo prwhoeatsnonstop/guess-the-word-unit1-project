@@ -54,6 +54,9 @@ var inputHappened = function(currentInput){
     console.log("You guessed right! One of the letters is " + currentInput);
     correctLetter.push(currentInput); //adds the correct currentInput to the initial empty array of correctLetter
     alphabet.push(currentInput);//remove the alphabet that user has keyed in so that they are not allowed to type that letter again
+    if (correctLetter.length === songs.length) {
+        return ("You're the winner! The song is 'numb'!")
+    }
     return("You guessed right! One of the letters is " + currentInput +"." + "\n" + "Now you have " + correctLetter);
   } else {
     console.log("Wronglah! You currently have " + currentInput);
