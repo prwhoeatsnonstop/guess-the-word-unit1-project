@@ -56,13 +56,14 @@ var inputHappened = function(currentInput){
     alphabet.push(currentInput);//remove the alphabet that user has keyed in so that they are not allowed to type that letter again
     if (correctLetter.length === songs.length) {
         return ("You're the winner! The song is 'numb'!")
-    }
+    } //the if here checks both side of length for correctLetter and songs, as long got all 4 letters of "numb" inside
     return("You guessed right! One of the letters is " + currentInput +"." + "\n" + "Now you have " + correctLetter);
   } else {
     console.log("Wronglah! You currently have " + currentInput);
     wrongLetter.push(currentInput); //adds the wrong currentInput to the initial empty array of wrongLetter
     alphabet.push(currentInput);//remove the alphabet that user has keyed in so that they are not allowed to type that letter again
-    return("Wronglah! You currently have " + currentInput + "." + "\n" + "You've already guessed " + wrongLetter);
+    loserFlipTable.push(flipTable.shift());//this removes the 1st character and flipTable and adds to the new array named loserFlipTable
+    return("Wronglah! You curently have " + currentInput + "." + "\n" + "You've already guessed " + wrongLetter + "\n" + loserFlipTable.join(""));
   }
   //prints whatever that u input
   // return "wow"; //this part is returning what you want to see in the output //later remember to uncomment wow
