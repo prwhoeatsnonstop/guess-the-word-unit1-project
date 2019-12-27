@@ -1,4 +1,4 @@
-console.log("hello script js");
+console.log("hello js");
 
 // var regexLetter = /^[a-zA-Z]+$/; // regular expressions always contained between 2 forward slash []means range from a-z lowercase and A-Z uppercase, + is unlimited, ^ is beginning of string, $ is end of string
 
