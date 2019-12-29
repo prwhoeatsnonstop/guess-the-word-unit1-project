@@ -1,7 +1,7 @@
 console.log("hello script js");
 
-
-var phrases = ["all we know",//audio1
+// words list
+var words = ["all we know",//audio1
              "apologize",//audio2
              "bad liar",//audio3
              "everything i need",//audio4
@@ -19,10 +19,11 @@ var phrases = ["all we know",//audio1
              "the reason",//audio16
 ];
 
-// words list
-var words = ["RUGRATS AND LOLA", "SPONGEBOB", "POKEMON", "ANIMANIACS", "RECESS", "DOUG", "CATDOG", "SIMPSONS"];
-var regexLetter = /^[a-zA-Z]+$/; // regular expressions always contained between 2 forward slash []means range from a-z lowercase and A-Z uppercase, + is unlimited, ^ is beginning of string, $ is end of string
-var maxNumGuesses = 7; // max number of guesses
+var wordsInUC = words.map(function(x){
+    return x.toUpperCase();
+});
+
+var maxNumGuesses = 8; // max number of guesses
 var guessedLetters = []; // store the guessed letters
 var ansWordArr = []; // store the "_" and to be used to replace the word answer
 var numGuessesRemaining = 0; // number of guesses remaining
@@ -30,21 +31,16 @@ var numWins = 0; // number of wins
 var numLosses = 0; // number of losses
 var isFinished = false; // when true, game can start again
 var ansWord; // the word that is being played
-var ranNum;
 
 // function runs at the start of page and used to restart after game isFinished
 function setup() {
     //picks random word from words list
-    ansWord = words[Math.floor(Math.random() * words.length)];
+    ansWord = wordsInUC[Math.floor(Math.random() * wordsInUC.length)];
 
     ansWordArr = [];
 
-    // adds "_" to ansWordArr (find out how does it appear and later change to '/' for spacing)
-    // for (var i = 0; i < ansWord.length; i++) {
-    //     ansWordArr[i] = "_";
-    // } sarah's ori code
-    // adds "_" to ansWordArr (manage to add "/" for spaces in answer)
-    for (var i = 0; i < ansWord.length; i++){
+    // adds "_" to ansWordArr
+    for (var i = 0; i < ansWord.length; i++) {
         if (ansWord[i] === " ") {
             ansWordArr[i] = " ";
         } else {
@@ -56,7 +52,7 @@ function setup() {
     numGuessesRemaining = maxNumGuesses;
     guessedLetters = [];
 
-    //clears giphy-embed to not showing any gifs
+    //clears giphy-embed to now show any gifs
     document.getElementById("giphy-embed").src = "";
     //removes color from numGuesses
     document.getElementById("numGuesses").style.color = "";
@@ -67,23 +63,23 @@ function setup() {
 
 //updates the HTML from the functions
 function updateScreen() {
-    document.getElementById("numWins").innerText = numWins;//shows round of wins
-    document.getElementById("numLosses").innerText = numLosses;//shows round of losses
-    document.getElementById("numGuesses").innerText = numGuessesRemaining;//shows how many lives left
-    document.getElementById("answerWord").innerText = ansWordArr.join("");//"-" ie dashes for words to appear
-    document.getElementById("guessedLetters").innerText = guessedLetters;//shoes letters that has been guessed
+    document.getElementById("numWins").innerText = numWins;
+    document.getElementById("numLosses").innerText = numLosses;
+    document.getElementById("numGuesses").innerText = numGuessesRemaining;
+    document.getElementById("answerWord").innerText = ansWordArr.join("");
+    document.getElementById("guessedLetters").innerText = guessedLetters;
 
 };
 
 //function to check the key that's pressed
 function checkGuess(letter) {
-    //if letter is not in guessedLetters array then push the letter to the array,  -1 means no match found
+    //if letter is not in guessedLetters array then push the letter to the array, -1 means no match found in array
     if (guessedLetters.indexOf(letter) === -1) {
         guessedLetters.push(letter);
         //if the letter isn't in the answer word then -1 the numGuessesRemaining
         if (ansWord.indexOf(letter) === -1) {
             numGuessesRemaining--;
-            //if numGuessesRemaining is 3 or less then change the color to red, like warning people hey the game's gonna end soon
+            //if numGuessesRemaining is 3 or less then change the color
             if (numGuessesRemaining <=3) {
                 document.getElementById("numGuesses").style.color = "#e12d2e";
             }
@@ -149,7 +145,7 @@ document.onkeyup = function(event) {
         isFinished = false;
     } else {
         //check to see if only letters A-Z are pressed
-        //functions are executed when user presses A-Z key, a is 65 z is 90 http://gcctech.org/csc/javascript/javascript_keycodes.htm
+        //functions are executed when user presses A-Z key
         if(event.keyCode >= 65 && event.keyCode <= 90) {
             checkGuess(event.key.toUpperCase());
             updateScreen();
@@ -164,7 +160,7 @@ setup();
 updateScreen();
 
 console.log(ansWord);
-
+// words list
 
 
 ///for audio hint onwards
