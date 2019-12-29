@@ -1,27 +1,57 @@
+<!DOCTYPE html>
 <html>
-  <head>
+<head>
     <meta charset="utf-8">
+    <title>Bingo the Word</title>
     <link rel="stylesheet" href="style.css">
-  </head>
-  <body>
-    <h3>DOM Manipulation Template</h3>
-    <input class="starter" id="input" placeholder="input"/>
-    <h2>output:</h2>
-    <div class="starter" id="output"></div>
-    <script>
-      var display = function(data){
-        var displayElement = document.querySelector('#output');
-        // get rid of the entire contents
-        displayElement.innerHtml = "";
-        // put the data into the div
-        output.innerText = data;
-      }
-      document.querySelector('#input').addEventListener('change', function(event){
-        var currentInput = event.target.value;
-        var result = inputHappened(currentInput)
-        display( result );
-      });
-    </script>
-    <script src="script.js" charset="utf-8"></script>
-  </body>
+    <link href="https://fonts.googleapis.com/css?family=Mansalva|Permanent+Marker" rel="stylesheet">
+
+</head>
+
+<body>
+    <header class="main-header">
+            <h1>HANGMAN</h1>
+            <h2>90s CARTOONS</h2>
+    </header>
+
+    <main>
+        <div class="container">
+            <div class="middle">
+                <p id="pressPlay">press any alphabet key to</p>
+                <h3>Guess the cartoon!</h3>
+                <p id="answerWord"> </p>
+                <div class="gif">
+                    <iframe id="giphy-embed" src="" frameBorder="0" ></iframe>
+                </div>
+            </div>
+            <div class="left side">
+                <div class="wins">
+                    <h4>Wins</h4>
+                    <p id="numWins"></p>
+                </div>
+                <div class="losses">
+                    <h4>Losses</h4>
+                    <p id="numLosses"></p>
+                </div>
+            </div>
+            <div class="right side">
+                <h4><span id="numGuesses"></span> lives remaining</h4>
+                <h4>Guessed Letters</h4>
+                <p id="guessedLetters"></p>
+                <!-- <button id="hint1" onclick="hintAudios.play()">Hint</button> -->
+            </div>
+        </div>
+    </main>
+
+
+
+
+    <script src="script.js"></script>
+</body>
 </html>
+
+
+<!-- for audio hint -->
+<!--     <div class="container">
+        <button id="reset" onClick="location.reload()">Reset</button><button id="hint1" onclick="hintAudios.play()">Hint</button>
+    </div> -->
