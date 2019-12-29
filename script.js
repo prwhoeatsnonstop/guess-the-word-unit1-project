@@ -22,7 +22,7 @@ var words = ["all we know",//audio1
 var wordsInUC = words.map(function(x){
     return x.toUpperCase();
 });
-
+var ranNum;
 var maxNumGuesses = 8; // max number of guesses
 var guessedLetters = []; // store the guessed letters
 var ansWordArr = []; // store the "_" and to be used to replace the word answer
@@ -31,11 +31,14 @@ var numWins = 0; // number of wins
 var numLosses = 0; // number of losses
 var isFinished = false; // when true, game can start again
 var ansWord; // the word that is being played
+var arrForAnsWord = [];//stores the correct words being guessed
 
 // function runs at the start of page and used to restart after game isFinished
 function setup() {
     //picks random word from words list
-    ansWord = wordsInUC[Math.floor(Math.random() * wordsInUC.length)];
+    ranNum = Math.floor(Math.random() * wordsInUC.length);
+    ansWord = wordsInUC[ranNum];
+    // ansWord = wordsInUC[Math.floor(Math.random() * wordsInUC.length)];
 
     ansWordArr = [];
 
@@ -66,7 +69,7 @@ function updateScreen() {
     document.getElementById("numWins").innerText = numWins;
     document.getElementById("numLosses").innerText = numLosses;
     document.getElementById("numGuesses").innerText = numGuessesRemaining;
-    document.getElementById("answerWord").innerText = ansWordArr.join("");
+    document.getElementById("answerWord").innerText = ansWordArr.join("");//shows the lines
     document.getElementById("guessedLetters").innerText = guessedLetters;
 
 };
@@ -79,7 +82,7 @@ function checkGuess(letter) {
         //if the letter isn't in the answer word then -1 the numGuessesRemaining
         if (ansWord.indexOf(letter) === -1) {
             numGuessesRemaining--;
-            //if numGuessesRemaining is 3 or less then change the color
+            //if numGuessesRemaining is 3 or less then change the color, text changes color
             if (numGuessesRemaining <=3) {
                 document.getElementById("numGuesses").style.color = "#e12d2e";
             }
@@ -145,7 +148,7 @@ document.onkeyup = function(event) {
         isFinished = false;
     } else {
         //check to see if only letters A-Z are pressed
-        //functions are executed when user presses A-Z key
+        //functions are executed when user presses A-Z key, http://gcctech.org/csc/javascript/javascript_keycodes.htm, a = 65, z = 90, so between 65-90
         if(event.keyCode >= 65 && event.keyCode <= 90) {
             checkGuess(event.key.toUpperCase());
             updateScreen();
@@ -158,6 +161,8 @@ document.onkeyup = function(event) {
 
 setup();
 updateScreen();
+
+//need smth like if numWins + numLosses = wordsinUC.length, the game stops (showing have finite questions)
 
 console.log(ansWord);
 // words list
