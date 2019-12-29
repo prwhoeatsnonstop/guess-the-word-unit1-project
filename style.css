@@ -1,26 +1,27 @@
 body {
-    background-image: url("../images/cloudy-day.png");
+    background-image: url("logo/piano.jpeg");
+    background-repeat: no-repeat;
+    background-size: cover;
+/*    cover --> Resize the background image to cover the entire container, even if it has to stretch the image or cut a little bit off one of the edges*/
 }
 h1 {
     font-family: 'Josefin Slab', serif;
     font-size: 3.75em;
     text-align: center;
-    color: #002d3c;
+    color: white;
+    text-shadow: 3px 3px 0 #EF8E34;
+    /*https://www.w3schools.com/cssref/playit.asp?filename=playcss_text-shadow play from here to find out how you want the text-shadow to be*/
 }
 
 h2 {
     font-family: 'Titan One', cursive;
     font-size: 2.5em;
     color: #fff;
-    text-shadow:
-    -3px -3px 0 #EF8E34,
-    3px -3px 0 #EF8E34,
-    -3px 3px 0 #EF8E34,
-    3px 3px 0 #EF8E34;
+    text-shadow: 3px 3px 0 #EF8E34;
     text-align: center;
-    margin-top: -65px;
-    margin-right: -200px;
-    transform: rotate(-10deg);
+    margin-top: -25px;
+    margin-right: -10px;
+    /*transform: rotate(-10deg);*/
 }
 
 h3{
@@ -67,6 +68,7 @@ main {
 .container {
     display: flex;
     background-color: rgba(255, 255, 255, 0.7);
+    /*this is the one that looks like transparent white above background image*/
 }
 
 .flexColumn {
@@ -101,6 +103,7 @@ main {
     order: 3;
     overflow-wrap: break-word;
 }
+
 
   /*font-family: 'Pacifico', cursive;*/
 /*background-color: #A9A49E;*/
