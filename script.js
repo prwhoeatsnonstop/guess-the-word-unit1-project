@@ -159,8 +159,27 @@ document.onkeyup = function(event) {
 };
 
 
+
+
 setup();
 updateScreen();
+//for audio hints, position need to be below setup() updateScreen();
+var hintAudio = [];
+function audio () {
+    for (var i = 1; i < 16; i++){
+        audioName = 'songs/audio' + i + '.mp3';
+        hintAudio.push(new Audio(audioName));
+     }
+ };
+
+//Get Hint
+hint1.onclick = function() {
+
+     var music = hintAudio[ranNum];
+     music.play();
+};
+audio();
+
 
 //need smth like if numWins + numLosses = wordsinUC.length, the game stops (showing have finite questions)
 
