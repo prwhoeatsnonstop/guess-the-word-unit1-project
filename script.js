@@ -60,6 +60,10 @@ function setup() {
 
     //show the selected elements on the screen
     updateScreen();
+
+    // //set both numWins and numLosses = 0;
+    // numWins = 0;
+    // numLosses = 0;
 };
 
 //updates the HTML from the functions
@@ -110,9 +114,9 @@ function moveToNextRoundTillComplete() {
     isWinner();
     if(numWins === 3) {
         isFinished = true;
-        setup();
-        numWins = 0;
         alert("You're a DJ!");
+        setup();
+        window.location.reload(true);// Reload the current page without the browser cache
     }
 }
 
@@ -134,11 +138,11 @@ function stopsGameForEachLoosingRound() {
     if(numLosses === 1) {
         isFinished = true;
         setup();
-        numLosses = 0;
-        numWins = 0;
+        window.location.reload(true);
     }
 }
 
+//both numWins = 0 and numLosses = 0 in stopsGame function and the numWins = 0 in moveTonextroundtill complete doesn't really reset game, it just reset back counter = 0. Maybe can do a function that reset games whenever it detects that both numWins = 0 && numLosses = 0
 
 //event listener for key pressed, mainly checking if all letters has been correctly guessed or still have lives remaining, then continue to allow players to guess or press any letter. In else statement, if user key in letters between a-z, first is to transform whatever they have key in to uppercase alphabets, then display whatever is in updateScreen function, then call isWinner and isLoser for incrementing wins or losses but infinity games coz dun have a stopping condition.
 document.onkeyup = function(event) {
@@ -170,7 +174,7 @@ updateScreen();
 //for audio hints, position need to be below setup() updateScreen();
 var hintAudio = [];
 function audio () {
-    for (var i = 1; i < 16; i++){
+    for (var i = 1; i < 17; i++){
         audioName = 'songs/audio' + i + '.mp3';
         hintAudio.push(new Audio(audioName));
      }
