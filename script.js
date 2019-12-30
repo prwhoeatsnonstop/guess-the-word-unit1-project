@@ -36,7 +36,7 @@ var gameLevel;//to increment game level till it reaches 16 then game ends
 // function runs at the start of page and used to restart after game isFinished
 function setup() {
     //picks random word from words list
-    ranNum = Math.floor(Math.random() * wordsInUC.length + 1);
+    ranNum = Math.floor(Math.random() * wordsInUC.length);
     ansWord = wordsInUC[ranNum];
     // ansWord = wordsInUC[Math.floor(Math.random() * wordsInUC.length)];if use this then no ranNum, hence stored in ranNum 1st before using it
 
@@ -170,7 +170,7 @@ updateScreen();
 //for audio hints, position need to be below setup() updateScreen();
 var hintAudio = [];
 function audio () {
-    for (var i = 1; i < 17; i++){
+    for (var i = 1; i < 16; i++){
         audioName = 'songs/audio' + i + '.mp3';
         hintAudio.push(new Audio(audioName));
      }
@@ -189,6 +189,26 @@ audio();
 
 console.log(ansWord);
 
+
+
+// function shuffle(arra1) {
+//     var counter = arra1.length, temp, index;
+
+// // While there are elements in the array
+//     while (counter > 0) {
+// // Pick a random index
+//         index = Math.floor(Math.random() * counter);
+// // Decrease ctr by 1
+//         counter--;
+// // And swap the last element with it
+//         temp = arra1[counter];
+//         arra1[counter] = arra1[index];
+//         arra1[index] = temp;
+//     }
+//     return arra1;
+// }
+// // console.log(shuffle(wordsInUC));
+//     var newArray = shuffle(wordsInUC);
 // // words list
 // var words = ["all we know",//audio1
 //              "apologize",//audio2
