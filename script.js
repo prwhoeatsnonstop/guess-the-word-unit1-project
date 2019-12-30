@@ -21,26 +21,25 @@ var words = ["all we know",//audio1
 
 var wordsInUC = words.map(function(x){
     return x.toUpperCase();
-});
-var ranNum;
+}); //changes each element in the array to uppercase
+var ranNum;//to generate random num later to be assigned for each round of words
 var maxNumGuesses = 8; // max number of guesses
 var guessedLetters = []; // store the guessed letters
-var ansWordArr = []; // store the "_" and to be used to replace the word answer
+var ansWordArr = []; // store the "_" & " " and to be used to replace the word answer
 var numGuessesRemaining = 0; // number of guesses remaining
 var numWins = 0; // number of wins
 var numLosses = 0; // number of losses
 var isFinished = false; // when true, game can start again
-var ansWord; // the word that is being played
-var arrForAnsWord = [];//stores the correct words being guessed
+var ansWord; // the word that is being played currently
 
 // function runs at the start of page and used to restart after game isFinished
 function setup() {
     //picks random word from words list
     ranNum = Math.floor(Math.random() * wordsInUC.length);
     ansWord = wordsInUC[ranNum];
-    // ansWord = wordsInUC[Math.floor(Math.random() * wordsInUC.length)];
+    // ansWord = wordsInUC[Math.floor(Math.random() * wordsInUC.length)];if use this then no ranNum, hence stored in ranNum 1st before using it
 
-    ansWordArr = [];
+    ansWordArr = [];//if this line was removed, when guessing next song, there is some alphabets already shown at the end of the game, coz in global variable it does not know what value ansWord will be holding
 
     // adds "_" to ansWordArr
     for (var i = 0; i < ansWord.length; i++) {
@@ -55,8 +54,6 @@ function setup() {
     numGuessesRemaining = maxNumGuesses;
     guessedLetters = [];
 
-    //clears giphy-embed to now show any gifs
-    document.getElementById("giphy-embed").src = "";
     //removes color from numGuesses
     document.getElementById("numGuesses").style.color = "";
 
@@ -76,7 +73,7 @@ function updateScreen() {
 
 //function to check the key that's pressed
 function checkGuess(letter) {
-    //if letter is not in guessedLetters array then push the letter to the array, -1 means no match found in array
+    //if letter is not in guessedLetters array then push the letter to the array, -1 means no match found in array but at this point all letters memang not in guessed letter, possibility of pushing the correct letter tho, hence else comes on line 89 to check is letter correct onot
     if (guessedLetters.indexOf(letter) === -1) {
         guessedLetters.push(letter);
         //if the letter isn't in the answer word then -1 the numGuessesRemaining
@@ -103,26 +100,8 @@ function isWinner() {
     //if there are no more "_" in the ansWordArr then +1 to Wins and switch isFinished to true
     if (ansWordArr.indexOf("_") === -1) {
         numWins++;
+        // wordsInUC.splice(ranNum);
         isFinished = true;
-        //if the answer is guessed then play assigned gif
-        if(ansWord === "DOUG") {
-            document.getElementById("giphy-embed").src = "https://giphy.com/embed/w7iOaLoi84N6E";
-        } else if (ansWord === "RUGRATS") {
-            document.getElementById("giphy-embed").src = "https://giphy.com/embed/3x5V8j8T341lS";
-        } else if (ansWord === "SPONGEBOB") {
-            document.getElementById("giphy-embed").src = "https://giphy.com/embed/TdfyKrN7HGTIY";
-        } else if (ansWord === "POKEMON") {
-            document.getElementById("giphy-embed").src = "https://giphy.com/embed/xuXzcHMkuwvf2";
-        } else if (ansWord === "ANIMANIACS") {
-            document.getElementById("giphy-embed").src = "https://giphy.com/embed/Vpu0dyuOVbrBC";
-        } else if (ansWord === "RECESS") {
-            document.getElementById("giphy-embed").src = "https://giphy.com/embed/ENjchsyk8aSoE";
-        } else if (ansWord === "CATDOG") {
-            document.getElementById("giphy-embed").src = "https://giphy.com/embed/VqWjJR7vOwmSk";
-        } else if (ansWord === "SIMPSONS") {
-            document.getElementById("giphy-embed").src = "https://giphy.com/embed/tkYpAbKdWj4TS";
-        }
-
     }
 };
 //function to check if player is a loser
@@ -131,8 +110,7 @@ function isLoser() {
     if(numGuessesRemaining <= 0) {
         numLosses++;
         isFinished = true;
-        //play the loser gif
-        document.getElementById("giphy-embed").src = "https://giphy.com/embed/3oFzmko6SiknmpR2NO";
+        //setting numLosses to another color
         document.getElementById("numLosses").style.color = "#e12d2e";
     }
 
