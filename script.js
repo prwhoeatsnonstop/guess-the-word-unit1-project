@@ -31,6 +31,7 @@ var numWins = 0; // number of wins
 var numLosses = 0; // number of losses
 var isFinished = false; // when true, game can start again
 var ansWord; // the word that is being played currently
+var gameLevel;//to increment game level till it reaches 16 then game ends
 
 // function runs at the start of page and used to restart after game isFinished
 function setup() {
@@ -68,7 +69,7 @@ function updateScreen() {
     document.getElementById("numGuesses").innerText = numGuessesRemaining;
     document.getElementById("answerWord").innerText = ansWordArr.join("");//shows the lines
     document.getElementById("guessedLetters").innerText = guessedLetters;
-
+    document.getElementById("levelUp").innerText = gameLevel;
 };
 
 //function to check the key that's pressed
@@ -95,7 +96,7 @@ function checkGuess(letter) {
 
 };
 
-//function to check if the player is a winner
+//function to check if the player is a winner for that particular round
 function isWinner() {
     //if there are no more "_" in the ansWordArr then +1 to Wins and switch isFinished to true
     if (ansWordArr.indexOf("_") === -1) {
@@ -104,7 +105,7 @@ function isWinner() {
         isFinished = true;
     }
 };
-//function to check if player is a loser
+//function to check if player is a loser for that particular round
 function isLoser() {
     // if the numGuessesRemaining is 0 then -1 numLosses and switch isFinished to true
     if(numGuessesRemaining <= 0) {
@@ -116,8 +117,18 @@ function isLoser() {
 
 };
 
+//trying to create a function that stops game for each loosing round, and turning the numLosses back to zero
+function stopsGameForEachLoosingRound() {
+    isLoser();
+    if(numLosses === 1) {
+        isFinished = true;
+        setup();
+        numLosses = 0;
+    }
+}
 
-//event listener for key pressed
+
+//event listener for key pressed, mainly checking if all letters has been correctly guessed or still have lives remaining, then continue to allow players to guess or press any letter. In else statement, if user key in letters between a-z, first is to transform whatever they have key in to uppercase alphabets, then display whatever is in updateScreen function, then call isWinner and isLoser for incrementing wins or losses but infinity games coz dun have a stopping condition.
 document.onkeyup = function(event) {
     //if isFinished is true then restart the game to the initial setup
     //and switch isFinished back to false
@@ -131,7 +142,9 @@ document.onkeyup = function(event) {
             checkGuess(event.key.toUpperCase());
             updateScreen();
             isWinner();
-            isLoser();
+            // isLoser();
+            //game did stop but still can play?
+            stopsGameForEachLoosingRound();
         }
     }
 };

@@ -21,7 +21,7 @@ h2 {
     text-align: center;
     margin-top: -25px;
     margin-right: -10px;
-    /*transform: rotate(-10deg);*/
+    /*transform: rotate(-10deg); this to make wordings slanted*/
 }
 
 h3{
@@ -98,6 +98,11 @@ main {
 .right{
     order: 3;
     overflow-wrap: break-word;
+}
+
+/*button hover*/
+#hint1:hover{
+	background-color: #248490;
 }
 
 
