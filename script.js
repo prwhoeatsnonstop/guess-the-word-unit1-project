@@ -23,7 +23,7 @@ var wordsInUC = words.map(function(x){
     return x.toUpperCase();
 }); //changes each element in the array to uppercase
 var ranNum;//to generate random num later to be assigned for each round of words
-var maxNumGuesses = 8; // max number of guesses
+var maxNumGuesses = 7; // max number of guesses
 var guessedLetters = []; // store the guessed letters
 var ansWordArr = []; // store the "_" & " " and to be used to replace the word answer
 var numGuessesRemaining = 0; // number of guesses remaining
@@ -105,6 +105,18 @@ function isWinner() {
         isFinished = true;
     }
 };
+
+//function to help player move on to next level and stops once numWins = 16 (16 is max num of words d, can see it as 16 random levels of word) **Eg if won twice, then lose 1 round. the winning counter remains 2?
+function moveToNextRoundTillComplete() {
+    isWinner();
+    if(numWins === 3) {
+        isFinished = true;
+        setup();
+        numWins = 0;
+        alert("You're a DJ!");
+    }
+}
+
 //function to check if player is a loser for that particular round
 function isLoser() {
     // if the numGuessesRemaining is 0 then -1 numLosses and switch isFinished to true
@@ -117,13 +129,14 @@ function isLoser() {
 
 };
 
-//trying to create a function that stops game for each loosing round, and turning the numLosses back to zero
+//trying to create a function that stops game for each loosing round, and turning the numLosses back to zero, need to use isLoser
 function stopsGameForEachLoosingRound() {
     isLoser();
     if(numLosses === 1) {
         isFinished = true;
         setup();
         numLosses = 0;
+        numWins = 0;
     }
 }
 
@@ -141,7 +154,8 @@ document.onkeyup = function(event) {
         if(event.keyCode >= 65 && event.keyCode <= 90) {
             checkGuess(event.key.toUpperCase());
             updateScreen();
-            isWinner();
+            // isWinner();
+            moveToNextRoundTillComplete();
             // isLoser();
             //game did stop but still can play?
             stopsGameForEachLoosingRound();
