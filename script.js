@@ -113,19 +113,45 @@ function checkGuess(letter) {
 
 };
 
-//function to check if the player is a winner
-function isWinner() {
-    //if there are no more "_" in the ansWordArr then +1 to Wins and switch isFinished to true
-    if (ansWordArr.indexOf("_") === -1) {
+// //function to check if the player is a winner
+// function isWinner() {
+//     //if there are no more "_" in the ansWordArr then +1 to Wins and switch isFinished to true
+//     if (ansWordArr.indexOf("_") === -1) {
+//         numWins++;
+//         isFinished = true;
+//     }
+// };
+//for game to move to next level
+var resetGame = function() {
+    ansWord = wordsInUC[gameLevel];
+    maxNumGuesses = 7; // max number of guesses
+    checkGuess();
+    gameOver = false;
+}
+
+//function checkwin or move to next level
+function checkWin() {
+        if (ansWordArr.indexOf("_") === -1) {
         numWins++;
+        gameLevel++;
         isFinished = true;
+    } if (gameLevel === wordsInUC.length) {
+        gameOver = true;
+        setup();
+        window.location.reload(true);// Reload the current page without the browser cache
+
+    } else {
+        resetGame();
     }
-};
+    }
 //function to check if player is a loser
 function isLoser() {
     // if the numGuessesRemaining is 0 then -1 numLosses and switch isFinished to true
     if(numGuessesRemaining <= 0) {
-        numLosses++;
+        // numLosses++;
+        numWins = 0;
+        setup();
+        window.location.reload(true);// Reload the current page without the browser cache
         isFinished = true;
     }
 
@@ -145,7 +171,7 @@ document.onkeyup = function(event) {
         if(event.keyCode >= 65 && event.keyCode <= 90) {
             checkGuess(event.key.toUpperCase());
             updateScreen();
-            isWinner();
+            checkWin();
             isLoser();
         }
     }
