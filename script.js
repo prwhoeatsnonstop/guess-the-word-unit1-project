@@ -49,8 +49,25 @@ var numGuessesRemaining = 0; // number of guesses remaining
 var numWins = 0; // number of wins
 var numLosses = 0; // number of losses
 var isFinished = false; // when true, game can start again
-var ansWord = wordsInUC[gameLevel].split('');
+
+function randomiseArrayOrder(array) {
+    // Shuffle original array into new array
+    // Using Fisher-Yates Algorithm from
+    // https://medium.com/@nitinpatel_20236/how-to-shuffle-correctly-shuffle-an-array-in-javascript-15ea3f84bfb
+    for (let i = array.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * i);
+        const temp = array[i];
+        array[i] = array[j];
+        array[j] = temp;
+    }
+}
+
+
+// Use it to shuffle array
+randomiseArrayOrder(wordsInUC);
+
  // the word that is being played currently
+var ansWord = wordsInUC[gameLevel].split('');
 
 // function runs at the start of page and used to restart after game isFinished
 function setup() {
@@ -126,20 +143,18 @@ var resetGame = function() {
     ansWord = wordsInUC[gameLevel];
     maxNumGuesses = 7; // max number of guesses
     checkGuess();
-    gameOver = false;
 }
 
-//function checkwin or move to next level
-function checkWin() {
+//function isWinner or move to next level
+function isWinner() {
         if (ansWordArr.indexOf("_") === -1) {
         numWins++;
         gameLevel++;
         isFinished = true;
     } if (gameLevel === wordsInUC.length) {
-        gameOver = true;
+        alert("You're the DJ!");
         setup();
         window.location.reload(true);// Reload the current page without the browser cache
-
     } else {
         resetGame();
     }
@@ -152,7 +167,7 @@ function isLoser() {
         numWins = 0;
         setup();
         window.location.reload(true);// Reload the current page without the browser cache
-        isFinished = true;
+        // isFinished = true;
     }
 
 };
@@ -171,7 +186,7 @@ document.onkeyup = function(event) {
         if(event.keyCode >= 65 && event.keyCode <= 90) {
             checkGuess(event.key.toUpperCase());
             updateScreen();
-            checkWin();
+            isWinner();
             isLoser();
         }
     }
@@ -180,6 +195,7 @@ document.onkeyup = function(event) {
 
 setup();
 updateScreen();
+
 
 console.log(ansWord);
 // function randomiseArrayOrder(array) {
