@@ -32,24 +32,23 @@ var numGuessesRemaining = 0; // number of guesses remaining
 var numWins = 0; // number of wins
 var numLosses = 0; // number of losses
 var isFinished = false; // when true, game can start again
-
 var hintAudio = [];
-function audio () {
-    for (var i = 1; i < 17; i++){
-        audioName = 'songs/audio' + i + '.mp3';
-        hintAudio.push((audioName));
-    }
-};
-audio();
 
-//Get Hint (this part not done yet)
-hint1.onclick = function() {
-    for (var j = 0; j < 16; j++) {
-        console.log(j);
-        var x = hintAudio[j];
-        x.play();
-    }
-};
+// //TODO: Implement audio as hints
+// function audio () {
+//     for (var i = 1; i < 17; i++){
+//         audioName = 'songs/audio' + i + '.mp3';
+//         hintAudio.push(new Audio(audioName));
+//     }
+// };
+// audio();
+// //it's playing the same song as index 0 (shuffled array of hintAudio and wordsInUC), how to ensure next round also same song?
+// hint1.onclick = function() {
+
+//     var music = hintAudio[0];
+//     music.play();
+// };
+
 
 
 //The shuffle function, what it does is that it starts at the end of the array and swaps the last element with somewhere random inside the array, and keeps doing that for each element of the array until the beginning.
@@ -83,8 +82,6 @@ var ansWord = wordsInUC[gameLevel].split('');
 
 // function runs at the start of page and used to restart after game isFinished
 function setup() {
-    //picks random word from words list
-    // ansWord = words[Math.floor(Math.random() * words.length)];
 
     ansWordArr = [];
 
@@ -106,6 +103,37 @@ function setup() {
 
     //show the selected elements on the screen
     updateScreen();
+};
+
+//Testing timeout function
+var timeoutHandle;
+    function countdown(minutes, seconds) {
+        function tick() {
+            var counter = document.getElementById("timer");
+            counter.innerHTML =
+                minutes.toString() + ":" + (seconds < 10 ? "0" : "") + String(seconds);
+            seconds--;
+            if (seconds >= 0) {
+                timeoutHandle = setTimeout(tick, 1000);
+            } else {
+                if (minutes >= 1) {
+                    // countdown(mins-1);   never reach “00″ issue solved:Contributed by Victor Streithorst
+                    setTimeout(function () {
+                        countdown(minutes - 1, 59);
+                    }, 1000);
+                }
+            }
+        }
+        tick();
+    }
+
+    countdown(1, 10);
+
+window.onload = function(){
+ setTimeout(function(){
+   alert("Game Over!");
+    window.location.reload(true);// Reload the current page without the browser cache
+ }, 70000);
 };
 
 //updates the HTML from the functions
