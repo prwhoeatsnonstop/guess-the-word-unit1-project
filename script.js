@@ -50,21 +50,29 @@ var numWins = 0; // number of wins
 var numLosses = 0; // number of losses
 var isFinished = false; // when true, game can start again
 
-function randomiseArrayOrder(array) {
-    // Shuffle original array into new array
-    // Using Fisher-Yates Algorithm from
-    // https://medium.com/@nitinpatel_20236/how-to-shuffle-correctly-shuffle-an-array-in-javascript-15ea3f84bfb
-    for (let i = array.length - 1; i > 0; i--) {
-        const j = Math.floor(Math.random() * i);
-        const temp = array[i];
-        array[i] = array[j];
-        array[j] = temp;
-    }
+//The shuffle function, what it does is that it starts at the end of the array and swaps the last element with somewhere random inside the array, and keeps doing that for each element of the array until the beginning.
+//Add an extra argument to the Fisher-Yates shuffle. (assumes that your arrays are equal length)
+//credits to Stuart for telling me the original Fisher-Yates-shuffle. Went on to find Shuffle multiple javascript arrays in the same way
+//https://stackoverflow.com/questions/18194745/shuffle-multiple-javascript-arrays-in-the-same-way
+function shuffle(obj1, obj2) {
+  var index = obj1.length;
+  var rnd, tmp1, tmp2;
+
+  while (index) {
+    rnd = Math.floor(Math.random() * index);
+    index -= 1;
+    tmp1 = obj1[index];
+    tmp2 = obj2[index];
+    obj1[index] = obj1[rnd];
+    obj2[index] = obj2[rnd];
+    obj1[rnd] = tmp1;
+    obj2[rnd] = tmp2;
+  }
 }
 
+shuffle(wordsInUC, hints);
 
-// Use it to shuffle array
-randomiseArrayOrder(wordsInUC);
+console.log(wordsInUC, hints);
 
  // the word that is being played currently
 var ansWord = wordsInUC[gameLevel].split('');
