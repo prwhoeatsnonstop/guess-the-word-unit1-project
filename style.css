@@ -9,15 +9,17 @@ h1 {
     font-size: 3.75em;
     text-align: center;
     color: white;
-    text-shadow: 3px 3px 0 #EF8E34;
+    /*text-shadow: 3px 3px 0 #EF8E34;*/
+    text-shadow: 3px 3px 0 black;
     /*https://www.w3schools.com/cssref/playit.asp?filename=playcss_text-shadow play from here to find out how you want the text-shadow to be*/
 }
 
 h2 {
     font-family: 'Titan One', cursive, serif;
     font-size: 2.5em;
-    color: #fff;
-    text-shadow: 3px 3px 0 #EF8E34;
+    color: white;
+    /*text-shadow: 3px 3px 0 #EF8E34;*/
+    text-shadow: 3px 3px 0 black;
     text-align: center;
     margin-top: -25px;
     margin-right: -10px;
@@ -48,6 +50,10 @@ p {
     color: #767F82;
 }
 
+#audio-hint {
+	margin-top: 70px;
+}
+
 #pressPlay {
     color: #002d3c;
     margin-top: 0;
@@ -60,16 +66,21 @@ p {
     color: #d0833b;
 }
 
+audio {
+	margin-left: -10px;
+	width: 250px;
+	margin-top: -30px
+}
 main {
     width: 80%;
     margin: 0 auto;
 }
 
+
 .container {
     display: flex;
 /*    By giving it a value of flex, we’re telling the browser that everything in the box should be rendered with flexbox instead of the default box model.*/
     background-color: rgba(255, 255, 255, 0.7);
-    /*this is the one that looks like transparent white above background image*/
 }
 
 .flexColumn {
@@ -79,6 +90,7 @@ main {
 .middle {
     flex: 1;
     order: 2;
+    /*where you want it to be, 2nd row? 2nd column*/
     padding: 20px;
     border-left: 1px solid #777777;
     border-right: 1px solid #777777;
@@ -100,10 +112,11 @@ main {
     overflow-wrap: break-word;
 }
 
-/*button hover*/
-#hint1:hover{
-	background-color: #248490;
-}
+
+/*@media only screen and (min-width: 640px) and (max-width: 1024px) {
+  .container {
+    position: relative;
+  }*/
 
 
   /*font-family: 'Pacifico', cursive;*/
