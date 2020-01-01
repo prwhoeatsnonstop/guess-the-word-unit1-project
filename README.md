@@ -23,7 +23,7 @@ Game with logic for General Assembly SEI 21, project 1.
 
 ## Source
 
-- Audio from https://mp3paw.com/
+- Audio from https://mp3paw.com/ (individual songs) + https://audio-joiner.com/ (joining multiple tracks)
 - Guide on how to shuffle the original array of words https://www.w3resource.com/javascript-exercises/javascript-array-exercise-17.php (found out this was more workable than Math.floor(Math.random) for arrays), additionally can shuffle multiple javascript arrays in the same way
 
 ## Lessons learned
@@ -33,6 +33,6 @@ Game with logic for General Assembly SEI 21, project 1.
 - Variable to be declare first before using it in subsequent places otherwise it won't work(Not a verified fact, an assumption for now) 
 
 //As of 1-1-2020
-- Manage to reshuffle arrays, but unable to add hints
+- Manage to reshuffle arrays
 - Notice that guessed letter has minor bug, after first letter, 2 commas appear instead of 1 comma to separate it from next letter
 - Added playlist as hints, yet to be able to play individual songs 
