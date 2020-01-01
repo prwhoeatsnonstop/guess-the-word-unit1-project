@@ -34,22 +34,6 @@ var numLosses = 0; // number of losses
 var isFinished = false; // when true, game can start again
 var hintAudio = [];
 
-// //TODO: Implement audio as hints
-// function audio () {
-//     for (var i = 1; i < 17; i++){
-//         audioName = 'songs/audio' + i + '.mp3';
-//         hintAudio.push(new Audio(audioName));
-//     }
-// };
-// audio();
-// //it's playing the same song as index 0 (shuffled array of hintAudio and wordsInUC), how to ensure next round also same song?
-// hint1.onclick = function() {
-
-//     var music = hintAudio[0];
-//     music.play();
-// };
-
-
 
 //The shuffle function, what it does is that it starts at the end of the array and swaps the last element with somewhere random inside the array, and keeps doing that for each element of the array until the beginning.
 //Add an extra argument to the Fisher-Yates shuffle. (assumes that your arrays are equal length)
@@ -105,36 +89,7 @@ function setup() {
     updateScreen();
 };
 
-//Testing timeout function
-var timeoutHandle;
-    function countdown(minutes, seconds) {
-        function tick() {
-            var counter = document.getElementById("timer");
-            counter.innerHTML =
-                minutes.toString() + ":" + (seconds < 10 ? "0" : "") + String(seconds);
-            seconds--;
-            if (seconds >= 0) {
-                timeoutHandle = setTimeout(tick, 1000);
-            } else {
-                if (minutes >= 1) {
-                    // countdown(mins-1);   never reach “00″ issue solved:Contributed by Victor Streithorst
-                    setTimeout(function () {
-                        countdown(minutes - 1, 59);
-                    }, 1000);
-                }
-            }
-        }
-        tick();
-    }
 
-    countdown(1, 10);
-
-window.onload = function(){
- setTimeout(function(){
-   alert("Game Over!");
-    window.location.reload(true);// Reload the current page without the browser cache
- }, 70000);
-};
 
 //updates the HTML from the functions
 function updateScreen() {
@@ -238,3 +193,49 @@ updateScreen();
 
 
 console.log(ansWord);
+
+// //TODO: Implement individual audio as hints
+// function audio () {
+//     for (var i = 1; i < 17; i++){
+//         audioName = 'songs/audio' + i + '.mp3';
+//         hintAudio.push(new Audio(audioName));
+//     }
+// };
+// audio();
+// //it's playing the same song as index 0 (shuffled array of hintAudio and wordsInUC), how to ensure next round also same song?
+// hint1.onclick = function() {
+
+//     var music = hintAudio[0];
+//     music.play();
+// };
+
+// //TODO: Testing timeout function
+// var timeoutHandle;
+//     function countdown(minutes, seconds) {
+//         function tick() {
+//             var counter = document.getElementById("timer");
+//             counter.innerHTML =
+//                 minutes.toString() + ":" + (seconds < 10 ? "0" : "") + String(seconds);
+//             seconds--;
+//             if (seconds >= 0) {
+//                 timeoutHandle = setTimeout(tick, 1000);
+//             } else {
+//                 if (minutes >= 1) {
+//                     // countdown(mins-1);   never reach “00″ issue solved:Contributed by Victor Streithorst
+//                     setTimeout(function () {
+//                         countdown(minutes - 1, 59);
+//                     }, 1000);
+//                 }
+//             }
+//         }
+//         tick();
+//     }
+
+//     countdown(2, 30);
+
+// window.onload = function(){
+//  setTimeout(function(){
+//    alert("Game Over!");
+//     window.location.reload(true);// Reload the current page without the browser cache
+//  }, 150000);
+// };

@@ -3,6 +3,7 @@
 <head>
     <meta charset="utf-8">
     <title>Guess The Word</title>
+    <link rel="icon" href="logo/guess.png">
     <link rel="stylesheet" href="style.css">
     <link href="https://fonts.googleapis.com/css?family=Mansalva|Permanent+Marker" rel="stylesheet">
 
@@ -10,15 +11,15 @@
 
 <body>
     <header class="main-header">
-            <h1>HANGMAN</h1>
-            <h2>Songs From 1990s - 2019</h2>
+            <h1>Guess The Song</h1>
+            <h2>Year 1990s - 2019</h2>
     </header>
 
     <main>
         <div class="container">
             <div class="middle">
-                <p id="pressPlay">press any alphabet key to start!</p>
-                <h3>Guess the Song!</h3>
+                <p id="pressPlay">Press hint if need help!</p>
+                <h3>Press any alphabet key to start!</h3>
                 <p id="answerWord"> </p>
             </div>
             <div class="left side">
@@ -30,16 +31,24 @@
                     <h4>Losses</h4>
                     <p id="numLosses"></p>
                 </div>
-                <div class="levelUp">
-                    <h4>Round</h4>
-                    <p id="levelUp"></p>
-                </div>
             </div>
             <div class="right side">
                 <h4><span id="numGuesses"></span> lives remaining</h4>
                 <h4>Guessed Letters</h4>
                 <p id="guessedLetters"></p>
-                <button id="hint1" onclick="hintAudios.play()">Hint</button>
+                <p id="audio-hint">Audio hint</p>
+                <div id="audio">
+                    <audio controls volume="0.7">
+                    <source src="songs/joined-tracks.mp3" type="audio/mpeg">
+                    Your browser does not support the audio element.
+                    </audio>
+                </div>
+
+                <!-- <audio class="my_audio" control preloads="none"> -->
+                    <!-- <source id="sound_src" src="songs/audio1.mp3" type="audio/mpeg"> -->
+                <!-- </audio> -->
+                <!-- <button id="hint1" onclick="hintAudios.play()">Hint</button> -->
+                <!-- TODO: <button id="timer"></button> -->
             </div>
         </div>
     </main>
@@ -52,9 +61,3 @@
     <script src="script.js"></script>
 </body>
 </html>
-
-
-<!-- for audio hint -->
-<!--     <div class="container">
-        <button id="reset" onClick="location.reload()">Reset</button><button id="hint1" onclick="hintAudios.play()">Hint</button>
-    </div> -->
