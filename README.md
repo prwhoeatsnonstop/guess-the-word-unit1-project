@@ -11,13 +11,14 @@ Game with logic for General Assembly SEI 21, project 1.
 - Press any letter to begin
 - For each correctly guessed round, win counter increments by 1. Remaining lives will be reset back to 7 lives for each round
 - In order to win, win counter = 16.
-- For each losses, game will reset back to 0
+- For each losses, game will auto reset.
 - Click 'hint' button for audio hints (Currently is playlist of multiple tracks instead of individual track)
 - Upon completing 16 rounds of games or each losses, the list of words will be reshuffled again from the original array of words
 
 ## Things to improve
 
 - Layout using CSS/Flexbox (UI)
+- Decrement of lives seems buggy, sometimes it is not decrementing (guessedLetters and remaining lives not tally, guessedLetters can be more than remaining lives at times)
 - Add audio hints INDIVDUALLY instead of playlist
 - Add timer
 
