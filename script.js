@@ -97,13 +97,13 @@ function updateScreen() {
     document.getElementById("numLosses").innerText = numLosses;
     document.getElementById("numGuesses").innerText = numGuessesRemaining;
     document.getElementById("answerWord").innerText = ansWordArr.join("");
-    document.getElementById("guessedLetters").innerText = guessedLetters;
+    document.getElementById("guessedLetters").innerText = guessedLetters.join("");
 
 };
 
 //function to check the key that's pressed
 function checkGuess(letter) {
-    //if letter is not in guessedLetters array then push the letter to the array
+    //if letter is not in guessedLetters array then push the letter to the array, -1 means not found in array
     if (guessedLetters.indexOf(letter) === -1) {
         guessedLetters.push(letter);
         //if the letter isn't in the answer word then -1 the numGuessesRemaining
