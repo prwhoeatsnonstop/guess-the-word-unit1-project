@@ -110,7 +110,7 @@ function updateScreen() {
     document.getElementById("numLosses").innerText = numLosses;
     document.getElementById("numGuesses").innerText = numGuessesRemaining;
     document.getElementById("answerWord").innerText = ansWordArr.join("");
-    document.getElementById("guessedLetters").innerText = guessedLetters;
+    document.getElementById("guessedLetters").innerText = guessedLetters.join("");
 
 };
 
