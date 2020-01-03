@@ -19,6 +19,23 @@ var words = ["all we know",//audio1
              "the reason",//audio16
 ];
 
+var hints = ["audio1",
+             "audio2",
+             "audio3",
+             "audio4",
+             "audio5",
+             "audio6",
+             "audio7",
+             "audio8",
+             "audio9",
+             "audio10",
+             "audio11",
+             "audio12",
+             "audio13",
+             "audio14",
+             "audio15",
+             "audio16",
+];
 
 var wordsInUC = words.map(function(x){
     return x.toUpperCase();
@@ -32,8 +49,6 @@ var numGuessesRemaining = 0; // number of guesses remaining
 var numWins = 0; // number of wins
 var numLosses = 0; // number of losses
 var isFinished = false; // when true, game can start again
-var hintAudio = [];
-
 
 //The shuffle function, what it does is that it starts at the end of the array and swaps the last element with somewhere random inside the array, and keeps doing that for each element of the array until the beginning.
 //Add an extra argument to the Fisher-Yates shuffle. (assumes that your arrays are equal length)
@@ -55,17 +70,17 @@ function shuffle(obj1, obj2) {
   }
 }
 
-shuffle(wordsInUC, hintAudio);
+shuffle(wordsInUC, hints);
 
-console.log(wordsInUC, hintAudio);
+console.log(wordsInUC, hints);
 
  // the word that is being played currently
 var ansWord = wordsInUC[gameLevel].split('');
 
-
-
 // function runs at the start of page and used to restart after game isFinished
 function setup() {
+    //picks random word from words list
+    // ansWord = words[Math.floor(Math.random() * words.length)];
 
     ansWordArr = [];
 
@@ -89,8 +104,6 @@ function setup() {
     updateScreen();
 };
 
-
-
 //updates the HTML from the functions
 function updateScreen() {
     document.getElementById("numWins").innerText = numWins;
@@ -103,7 +116,7 @@ function updateScreen() {
 
 //function to check the key that's pressed
 function checkGuess(letter) {
-    //if letter is not in guessedLetters array then push the letter to the array, -1 means not found in array
+    //if letter is not in guessedLetters array then push the letter to the array
     if (guessedLetters.indexOf(letter) === -1) {
         guessedLetters.push(letter);
         //if the letter isn't in the answer word then -1 the numGuessesRemaining
@@ -193,49 +206,3 @@ updateScreen();
 
 
 console.log(ansWord);
-
-// //TODO: Implement individual audio as hints
-// function audio () {
-//     for (var i = 1; i < 17; i++){
-//         audioName = 'songs/audio' + i + '.mp3';
-//         hintAudio.push(new Audio(audioName));
-//     }
-// };
-// audio();
-// //it's playing the same song as index 0 (shuffled array of hintAudio and wordsInUC), how to ensure next round also same song?
-// hint1.onclick = function() {
-
-//     var music = hintAudio[0];
-//     music.play();
-// };
-
-// //TODO: Testing timeout function
-// var timeoutHandle;
-//     function countdown(minutes, seconds) {
-//         function tick() {
-//             var counter = document.getElementById("timer");
-//             counter.innerHTML =
-//                 minutes.toString() + ":" + (seconds < 10 ? "0" : "") + String(seconds);
-//             seconds--;
-//             if (seconds >= 0) {
-//                 timeoutHandle = setTimeout(tick, 1000);
-//             } else {
-//                 if (minutes >= 1) {
-//                     // countdown(mins-1);   never reach “00″ issue solved:Contributed by Victor Streithorst
-//                     setTimeout(function () {
-//                         countdown(minutes - 1, 59);
-//                     }, 1000);
-//                 }
-//             }
-//         }
-//         tick();
-//     }
-
-//     countdown(2, 30);
-
-// window.onload = function(){
-//  setTimeout(function(){
-//    alert("Game Over!");
-//     window.location.reload(true);// Reload the current page without the browser cache
-//  }, 150000);
-// };
