@@ -1,69 +1,103 @@
 body {
-    background-image: url("logo/piano.jpeg");
-    background-repeat: no-repeat;
-    background-size: cover;
-/*    cover --> Resize the background image to cover the entire container, even if it has to stretch the image or cut a little bit off one of the edges*/
+	background-image: url("logo/piano.jpeg");
+	background-repeat: no-repeat;
+	background-size: cover;
+/* cover --> Resize the background image to cover the entire container, even if it has to stretch the image or cut a little bit off one of the edges*/
 }
+
 h1 {
-    font-family: 'Josefin Slab', serif;
-    font-size: 3.75em;
-    text-align: center;
-    color: white;
-    /*text-shadow: 3px 3px 0 #EF8E34;*/
-    text-shadow: 3px 3px 0 black;
-    /*https://www.w3schools.com/cssref/playit.asp?filename=playcss_text-shadow play from here to find out how you want the text-shadow to be*/
+	font-family: "Josefin Slab", serif;
+	font-size: 60px;
+	text-align: center;
+	color: white;
+	text-shadow: 3px 3px 0 black;
+/*https://www.w3schools.com/cssref/playit.asp?filename=playcss_text-shadow play from here to find out how you want the text-shadow to be*/
 }
 
 h2 {
-    font-family: 'Titan One', cursive, serif;
-    font-size: 2.5em;
-    color: white;
-    /*text-shadow: 3px 3px 0 #EF8E34;*/
-    text-shadow: 3px 3px 0 black;
-    text-align: center;
-    margin-top: -25px;
-    margin-right: -10px;
-    /*transform: rotate(-10deg); this to make wordings slanted*/
+	font-family: "Titan One", cursive, serif;
+	font-size: 40px;
+	color: white;
+	text-shadow: 3px 3px 0 black;
+	text-align: center;
+	margin-top: -25px;
+	margin-right: -10px;
 }
 
-h3{
-    font-family: 'Bangers', cursive, serif;
-    font-size: 2.5em;
-    text-align: center;
-    color: #248490;
+h3 {
+	font-family: "Bangers", cursive, serif;
+	font-size: 40px;
+	text-align: center;
+	color: #248490;
 }
 
 h4 {
-    font-family: 'Rancho', cursive, serif;
-    font-size: 2em;
-    color: #002d3c;
+	font-family: "Rancho", cursive, serif;
+	font-size: 32px;
+	color: #002d3c;
 }
 
-p {
-    font-family: 'Gaegu', cursive, serif;
-    font-size: 1.75em;
-    text-align: center;
-    margin-top: -55px;
+p{
+	font-family: "Gaegu", cursive, serif;
+	font-size: 28px;
+	text-align: center;
+	margin-top: -55px;
 }
 
 #guessedLetters {
-    color: #767F82;
-}
-
-#audio-hint {
-	margin-top: 70px;
+	color: #767F82;
 }
 
 #pressPlay {
-    color: #002d3c;
-    margin-top: 0;
-    margin-bottom: -40px;
+	color: #002d3c;
+	margin-top: 0;
+	margin-bottom: -40px;
 }
 
 #answerWord {
-    letter-spacing: .25em;
-    margin-top: 0;
-    color: #d0833b;
+	letter-spacing: .25em;
+	/*letter-spacing defines the spacing between the characters of a block of text, then em values: this allows the spacing to remain relative to the font-size.*/
+	margin-top: 0;
+	color: #d0833b;
+}
+
+main {
+	width: 80%;
+	margin: 0 auto;
+}
+
+.container {
+	display: flex;
+/* By giving it a value of flex, we’re telling the browser that everything in the box should be rendered with flexbox instead of the default box model.This enables the flexbox layout mode. Without it, the browser would ignore all the flexbox properties that we’re about to introduce. Explicitly defining flex containers means that you can mix and match flexbox with other layout models*/
+	background-color: rgb(255, 255, 255, 0.7);
+/*so that it looks like a thin opaque sheet between body's background image and items in container, and help us to see how big container is (though depend how many items in it)*/
+}
+
+.middle {
+	flex: 1;
+/* The flex property defines the width of individual items in a flex container. Or, more accurately, it allows them to have flexible widths. It works as a weight that tells the flex container how to distribute extra space to each item. For example, an item with a flex value of 2 will grow twice as fast as items with the default value of 1. coz middle is an item of container */
+	order: 2;
+	padding: 20px;
+	border-left: 1px solid #777777;
+	border-right: 1px solid #777777;
+}
+
+.side {
+	width: 20%;
+	padding: 20px;
+}
+
+.left {
+	order: 1;
+	display: flex;
+	flex-direction: row;
+	justify-content: space-around;
+}
+
+.right {
+	order: 3;
+	overflow-wrap: break-word;
+/* The overflow-wrap property in CSS allows you to specify that the browser can break a line of text inside the targeted element onto multiple lines in an otherwise unbreakable place. This helps to avoid an unusually long string of text causing layout problems due to overflow. */
 }
 
 audio {
@@ -71,45 +105,9 @@ audio {
 	width: 250px;
 	margin-top: -30px
 }
-main {
-    width: 80%;
-    margin: 0 auto;
-}
 
-
-.container {
-    display: flex;
-/*    By giving it a value of flex, we’re telling the browser that everything in the box should be rendered with flexbox instead of the default box model.*/
-    background-color: rgba(255, 255, 255, 0.7);
-}
-
-.flexColumn {
-    flex-direction: column;
-}
-
-.middle {
-    flex: 1;
-    order: 2;
-    /*where you want it to be, 2nd row? 2nd column*/
-    padding: 20px;
-    border-left: 1px solid #777777;
-    border-right: 1px solid #777777;
-}
-
-.side {
-    width: 20%;
-    padding: 20px;
-}
-.left {
-    order: 1;
-    display: flex;
-    flex-direction: row;
-    justify-content: space-around;
-}
-
-.right{
-    order: 3;
-    overflow-wrap: break-word;
+#audio-hint {
+	margin-top: 70px;
 }
 
 
@@ -121,3 +119,7 @@ main {
 
   /*font-family: 'Pacifico', cursive;*/
 /*background-color: #A9A49E;*/
+
+/*.flexColumn {
+    flex-direction: column;
+}*/
