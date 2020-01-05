@@ -113,27 +113,24 @@ function updateScreen() {
 
 //function to check the key that's pressed
 function checkGuess(letter) {
-    //if letter is not in guessedLetters array then push the letter to the array
-    if (guessedLetters.indexOf(letter) === -1) {
+    //if letter is not in guessedLetters array then push the letter to the array and if the letter is not in the ansWord then -1 for numGuessesRemaining
+    if (guessedLetters.indexOf(letter) === -1 && ansWord.indexOf(letter) === -1) {
         guessedLetters.push(letter);
-        //if the letter isn't in the answer word then -1 the numGuessesRemaining
-        if (ansWord.indexOf(letter) === -1) {
-            numGuessesRemaining--;
+        numGuessesRemaining--;
+    }
             //if numGuessesRemaining is 3 or less then change the color
             if (numGuessesRemaining <=3) {
                 document.getElementById("numGuesses").style.color = "#e12d2e";
             }
             //if letter is in answer then replace the positioned "_" with the letter
-        } else {
+         else {
             for (var i = 0; i < ansWord.length; i++) {
                 if (letter === ansWord[i]) {
                     ansWordArr[i] = letter;
                 }
             }
         }
-    }
-
-};
+    };
 
 
 //for game to move to next level
@@ -149,7 +146,7 @@ function isWinner() {
         gameLevel++;
         isFinished = true;
     } if (gameLevel === wordsInUC.length) {
-        alert("You're the DJ!");
+        alert("You're the Champion!");
         window.location.reload(true);// Reload the current page without the browser cache
     } else {
         resetGame();
