@@ -79,9 +79,6 @@ var ansWord = wordsInUC[gameLevel].split('');
 
 // function runs at the start of page and used to restart after game isFinished
 function setup() {
-    //picks random word from words list
-    // ansWord = words[Math.floor(Math.random() * words.length)];
-
     ansWordArr = [];
 
     // adds "_" to ansWordArr
@@ -110,7 +107,7 @@ function updateScreen() {
     document.getElementById("numLosses").innerText = numLosses;
     document.getElementById("numGuesses").innerText = numGuessesRemaining;
     document.getElementById("answerWord").innerText = ansWordArr.join("");
-    document.getElementById("guessedLetters").innerText = guessedLetters.join("");
+    document.getElementById("guessedLetters").innerText = guessedLetters;
 
 };
 
@@ -138,19 +135,11 @@ function checkGuess(letter) {
 
 };
 
-// //function to check if the player is a winner
-// function isWinner() {
-//     //if there are no more "_" in the ansWordArr then +1 to Wins and switch isFinished to true
-//     if (ansWordArr.indexOf("_") === -1) {
-//         numWins++;
-//         isFinished = true;
-//     }
-// };
+
 //for game to move to next level
 var resetGame = function() {
     ansWord = wordsInUC[gameLevel];
     maxNumGuesses = 7; // max number of guesses
-    checkGuess();
 }
 
 //function isWinner or move to next level
@@ -161,23 +150,19 @@ function isWinner() {
         isFinished = true;
     } if (gameLevel === wordsInUC.length) {
         alert("You're the DJ!");
-        setup();
         window.location.reload(true);// Reload the current page without the browser cache
     } else {
         resetGame();
     }
     }
+
 //function to check if player is a loser
 function isLoser() {
     // if the numGuessesRemaining is 0 then -1 numLosses and switch isFinished to true
     if(numGuessesRemaining <= 0) {
         // numLosses++;
-        numWins = 0;
-        setup();
         window.location.reload(true);// Reload the current page without the browser cache
-        // isFinished = true;
     }
-
 };
 
 
