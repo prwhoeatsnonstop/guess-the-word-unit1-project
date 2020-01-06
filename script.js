@@ -147,21 +147,26 @@ function isWinner() {
         gameLevel++;
         isFinished = true;
     } if (gameLevel === wordsInUC.length) {
-        alert("You're the Champion!");
+        alert("You're the Winner!");
         window.location.reload(true);// Reload the current page without the browser cache
     } else {
         resetGame();
     }
-    }
+};
 
 
-//function to check if player is a loser (game tracks losses but endless mode, didn't set a limit to lose more than 3 round then win)
+//function to check if player is a loser. And if player losses 3 times, game will end.
 function isLoser() {
     // if the numGuessesRemaining is 0 then -1 numLosses and switch isFinished to true
     if(numGuessesRemaining <= 0) {
         numLosses++;
         isFinished = true;
         // window.location.reload(true);// Reload the current page without the browser cache
+    } if (numLosses === 3) {
+        alert("Game Over Buddy!");
+        window.location.reload(true);// Reload the current page without the browser cache
+    } else {
+        resetGame();
     }
 };
 
