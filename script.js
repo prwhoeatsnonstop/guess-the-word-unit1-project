@@ -137,6 +137,7 @@ function checkGuess(letter) {
 var resetGame = function() {
     ansWord = wordsInUC[gameLevel];
     maxNumGuesses = 7; // max number of guesses
+    playAudio();
 }
 
 //function isWinner or move to next level
@@ -153,21 +154,23 @@ function isWinner() {
     }
     }
 
-//function to check if player is a loser
+
+//function to check if player is a loser (game tracks losses but endless mode, didn't set a limit to lose more than 3 round then win)
 function isLoser() {
     // if the numGuessesRemaining is 0 then -1 numLosses and switch isFinished to true
     if(numGuessesRemaining <= 0) {
-        // numLosses++;
-        window.location.reload(true);// Reload the current page without the browser cache
+        numLosses++;
+        isFinished = true;
+        // window.location.reload(true);// Reload the current page without the browser cache
     }
 };
 
 
-//event listener for key pressed
-document.onkeyup = function(event) {
-    //if isFinished is true then restart the game to the initial setup
-    //and switch isFinished back to false
-    if (isFinished) {
+//event listener for key pressed from (https://eloquentjavascript.net/15_event.htm and https://stackoverflow.com/questions/12045440/difference-between-document-addeventlistener-and-window-addeventlistener)
+ window.addEventListener("keyup", () => {
+//if isFinished is true then restart the game to the initial setup
+//and switch isFinished back to false
+        if (isFinished) {
         setup();
         isFinished = false;
     } else {
@@ -180,11 +183,67 @@ document.onkeyup = function(event) {
             isLoser();
         }
     }
-};
+  });
 
 
 setup();
 updateScreen();
 
+function playAudio() {
+    var audioSource = document.getElementById("audio");
+    audioSource.src = "songs/" + hints[gameLevel] + ".mp3";
+};
+
+playAudio();
 
 console.log(ansWord);
+
+// Timeout from https://stackoverflow.com/questions/52547625/1-minutes-30-second-countdown-timer-javascript
+// var timeoutHandle;
+//     function countdown(minutes, seconds) {
+//         function tick() {
+//             var counter = document.getElementById("timer");
+//             counter.innerHTML =
+//                 minutes.toString() + ":" + (seconds < 10 ? "0" : "") + String(seconds);
+//             seconds--;
+//             if (seconds >= 0) {
+//                 timeoutHandle = setTimeout(tick, 1000);
+//             } else {
+//                 if (minutes >= 1) {
+//                     // countdown(mins-1);   never reach “00″ issue solved:Contributed by Victor Streithorst
+//                     setTimeout(function () {
+//                         countdown(minutes - 1, 59);
+//                     }, 1000);
+//                 }
+//             }
+//         }
+//         tick();
+//     }
+
+//     // countdown(1, 30);
+//maybe need setinterval or cleartimeout
+//     window.onkeyup = function(){
+//  setTimeout(function(){
+//    alert("Game Over!");
+//     window.location.reload(true);// Reload the current page without the browser cache
+//  }, 90000);
+// };
+
+//event listener for key pressed
+// document.onkeyup = function(event) {
+//     //if isFinished is true then restart the game to the initial setup
+//     //and switch isFinished back to false
+//     if (isFinished) {
+//         setup();
+//         isFinished = false;
+//     } else {
+//         //check to see if only letters A-Z are pressed
+//         //functions are executed when user presses A-Z key
+//         if(event.keyCode >= 65 && event.keyCode <= 90) {
+//             checkGuess(event.key.toUpperCase());
+//             updateScreen();
+//             isWinner();
+//             isLoser();
+//         }
+//     }
+// };

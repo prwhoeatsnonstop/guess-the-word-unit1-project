@@ -19,7 +19,7 @@
             <div class="middle">
                 <p id="pressPlay">Press hint if need help!</p>
                 <h3>Press any alphabet key to start!</h3>
-                <p id="answerWord"> </p>
+                <p id="answerWord"></p>
             </div>
             <div class="left side">
                 <div class="wins">
@@ -30,22 +30,26 @@
                     <h4>Losses</h4>
                     <p id="numLosses"></p>
                 </div>
+                    <!-- <div id="timer"></div> -->
             </div>
             <div class="right side">
                 <h4><span id="numGuesses"></span> lives remaining</h4>
                 <h4>Guessed Letters</h4>
                 <p id="guessedLetters"></p>
                 <p id="audio-hint">Audio hint</p>
-                <div id="audio">
-                    <audio controls volume="0.7">
-                    <source src="songs/joined-tracks.mp3" type="audio/mpeg">
-                    Your browser does not support the audio element.
+                <div id="audio1">
+                    <audio id="audio" controls="controls">
+                        <!-- <source id="audioSource" src=""></source> -->
+                            Your browser does not support the audio format.
                     </audio>
+<!--                     <audio id="audio" controls="controls" controls volume="0.7">
+                     <audio id="audioSource" src=""></audio>
+                        Your browser does not support the audio format.
+                    </audio> -->
                 </div>
             </div>
         </div>
     </main>
-
 <footer>
     <p>Win 16 rounds if you can!</p>
 </footer>
