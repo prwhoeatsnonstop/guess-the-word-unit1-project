@@ -51,17 +51,6 @@ var numLosses = 0; // number of losses
 var isFinished = false; // when true, game can start again
 var counter = 0;
 
-let timeElm = document.getElementById('timer');
-let timer = function(x) {
- if(x === 0) {
-    return;
- }
-
- timeElm.innerHTML = x;
-
- return setTimeout(() => {timer(--x)}, 1000)
-}
-
 
 //The shuffle function, what it does is that it starts at the end of the array and swaps the last element with somewhere random inside the array, and keeps doing that for each element of the array until the beginning.
 //Add an extra argument to the Fisher-Yates shuffle. (assumes that your arrays are equal length)
@@ -156,6 +145,8 @@ var resetGame = function() {
     ansWord = wordsInUC[gameLevel];
     maxNumGuesses = 7; // max number of guesses
     playAudio();
+    // clearTimeout(timeoutHandle);
+    countdown(0,10);
 }
 
 //function isWinner or move to next level
@@ -164,11 +155,10 @@ function isWinner() {
         numWins++;
         gameLevel++;
         isFinished = true;
+        resetGame();
     } if (gameLevel === wordsInUC.length) {
         alert("You're the winner! 🎵🎵🎵");
         window.location.reload(true);// Reload the current page without the browser cache
-    } else {
-        resetGame();
     }
     }
 
@@ -179,12 +169,11 @@ function isLoser() {
         numLosses++;
         isFinished = true;
         document.getElementById("numLosses").style.color = "#e12d2e";
+        resetGame();
         // window.location.reload(true);// Reload the current page without the browser cache
     } if (numLosses === 3){
         alert("Sorry buddy, game over!");
         window.location.reload(true);// Reload the current page without the browser cache
-    } else {
-        resetGame();
     }
 };
 
@@ -206,9 +195,10 @@ document.onkeyup = function(event) {
             isWinner();
             isLoser();
             counter++;
-        } if (counter === 1){
-            timer(30);
         }
+        // } if (counter === 1) {
+        //     countdown(0,10);
+        // }
     }
 };
 
@@ -218,3 +208,27 @@ updateScreen();
 
 
 console.log(ansWord);
+
+//Testing timeout function (https://stackoverflow.com/questions/52547625/1-minutes-30-second-countdown-timer-javascript)
+// var timeoutHandle;
+//     function countdown(minutes, seconds) {
+//         function tick() {
+//             var counter = document.getElementById("timer");
+//             counter.innerHTML =
+//                 minutes.toString() + ":" + (seconds < 10 ? "0" : "") + String(seconds);
+//             seconds--;
+//             if (seconds >= 0) {
+//                 timeoutHandle = setTimeout(tick, 1000);
+//             } else {
+//                 if (minutes >= 1) {
+//                     // countdown(mins-1);   never reach “00″ issue solved:Contributed by Victor Streithorst
+//                     setTimeout(function () {
+//                         countdown(minutes - 1, 59);
+//                     }, 1000);
+//                 }
+//             }
+//         }
+//         tick();
+//     }
+
+    // countdown(1, 10);
