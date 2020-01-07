@@ -146,7 +146,7 @@ var resetGame = function() {
     maxNumGuesses = 7; // max number of guesses
     playAudio();
     clearTimeout(timeoutHandle);
-    countdown(0,15);
+    countdown(0,30);
 }
 
 //function isWinner or move to next level
@@ -197,7 +197,7 @@ document.onkeyup = function(event) {
             counter++;
         }
         } if (counter === 1) {
-            countdown(0,15);
+            countdown(0,30);
         }
 };
 
