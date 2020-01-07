@@ -140,7 +140,7 @@ function checkGuess(letter) {
     };
 
 
-//for game to move to next level
+//for game to move to next level (may need to do it in a way where on first press of every round only it'll start countdown?)
 var resetGame = function() {
     ansWord = wordsInUC[gameLevel];
     maxNumGuesses = 7; // max number of guesses
@@ -169,8 +169,6 @@ function isLoser() {
         numLosses++;
         isFinished = true;
         document.getElementById("numLosses").style.color = "#e12d2e";
-        resetGame();
-        // window.location.reload(true);// Reload the current page without the browser cache
     } if (numLosses === 3){
         alert("Sorry buddy, game over!");
         window.location.reload(true);// Reload the current page without the browser cache
@@ -179,27 +177,27 @@ function isLoser() {
 
 
 
-//event listener for key pressed
-document.onkeyup = function(event) {
-    //if isFinished is true then restart the game to the initial setup
-    //and switch isFinished back to false
-    if (isFinished) {
+//event listener for key pressed from (https://eloquentjavascript.net/15_event.htm and https://stackoverflow.com/questions/12045440/difference-between-document-addeventlistener-and-window-addeventlistener)
+ window.addEventListener("keyup", function(event) {
+//if isFinished is true then restart the game to the initial setup
+//and switch isFinished back to false
+        if (isFinished) {
         setup();
         isFinished = false;
     } else {
         //check to see if only letters A-Z are pressed
         //functions are executed when user presses A-Z key
-        if(event.keyCode >= 65 && event.keyCode <= 90) {
+        if (event.keyCode >= 65 && event.keyCode <= 90) {
             checkGuess(event.key.toUpperCase());
             updateScreen();
             isWinner();
             isLoser();
             counter++;
-        }
         } if (counter === 1) {
-            countdown(0,30);
+            countdown(0, 30);
         }
-};
+    }
+  });
 
 
 setup();
