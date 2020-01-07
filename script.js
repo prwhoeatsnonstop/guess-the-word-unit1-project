@@ -145,8 +145,8 @@ var resetGame = function() {
     ansWord = wordsInUC[gameLevel];
     maxNumGuesses = 7; // max number of guesses
     playAudio();
-    // clearTimeout(timeoutHandle);
-    countdown(0,10);
+    clearTimeout(timeoutHandle);
+    countdown(0,15);
 }
 
 //function isWinner or move to next level
@@ -196,10 +196,9 @@ document.onkeyup = function(event) {
             isLoser();
             counter++;
         }
-        // } if (counter === 1) {
-        //     countdown(0,10);
-        // }
-    }
+        } if (counter === 1) {
+            countdown(0,15);
+        }
 };
 
 
@@ -210,25 +209,28 @@ updateScreen();
 console.log(ansWord);
 
 //Testing timeout function (https://stackoverflow.com/questions/52547625/1-minutes-30-second-countdown-timer-javascript)
-// var timeoutHandle;
-//     function countdown(minutes, seconds) {
-//         function tick() {
-//             var counter = document.getElementById("timer");
-//             counter.innerHTML =
-//                 minutes.toString() + ":" + (seconds < 10 ? "0" : "") + String(seconds);
-//             seconds--;
-//             if (seconds >= 0) {
-//                 timeoutHandle = setTimeout(tick, 1000);
-//             } else {
-//                 if (minutes >= 1) {
-//                     // countdown(mins-1);   never reach “00″ issue solved:Contributed by Victor Streithorst
-//                     setTimeout(function () {
-//                         countdown(minutes - 1, 59);
-//                     }, 1000);
-//                 }
-//             }
-//         }
-//         tick();
-//     }
+var timeoutHandle;
+    function countdown(minutes, seconds) {
+        function tick() {
+            var counter = document.getElementById("timer");
+            counter.innerHTML =
+                minutes.toString() + ":" + (seconds < 10 ? "0" : "") + String(seconds);
+            seconds--;
+            if (seconds >= 0) {
+                timeoutHandle = setTimeout(tick, 1000);
+            } else {
+                if (minutes >= 1) {
+                    // countdown(mins-1);   never reach “00″ issue solved:Contributed by Victor Streithorst
+                    setTimeout(function () {
+                        countdown(minutes - 1, 59);
+                    }, 1000);
+                } else {
+                    alert("Sorry buddy, game over!");
+                    window.location.reload(true);// Reload the current page without the browser cache
+                }
+            }
+        }
+        tick();
+    }
 
     // countdown(1, 10);
