@@ -49,6 +49,19 @@ var numGuessesRemaining = 0; // number of guesses remaining
 var numWins = 0; // number of wins
 var numLosses = 0; // number of losses
 var isFinished = false; // when true, game can start again
+var counter = 0;
+
+let timeElm = document.getElementById('timer');
+let timer = function(x) {
+ if(x === 0) {
+    return;
+ }
+
+ timeElm.innerHTML = x;
+
+ return setTimeout(() => {timer(--x)}, 1000)
+}
+
 
 //The shuffle function, what it does is that it starts at the end of the array and swaps the last element with somewhere random inside the array, and keeps doing that for each element of the array until the beginning.
 //Add an extra argument to the Fisher-Yates shuffle. (assumes that your arrays are equal length)
@@ -115,7 +128,6 @@ function updateScreen() {
     document.getElementById("numGuesses").innerText = numGuessesRemaining;
     document.getElementById("answerWord").innerText = ansWordArr.join("");
     document.getElementById("guessedLetters").innerText = guessedLetters;
-
 };
 
 //function to check the key that's pressed
@@ -177,6 +189,7 @@ function isLoser() {
 };
 
 
+
 //event listener for key pressed
 document.onkeyup = function(event) {
     //if isFinished is true then restart the game to the initial setup
@@ -192,6 +205,9 @@ document.onkeyup = function(event) {
             updateScreen();
             isWinner();
             isLoser();
+            counter++;
+        } if (counter === 1){
+            timer(30);
         }
     }
 };
