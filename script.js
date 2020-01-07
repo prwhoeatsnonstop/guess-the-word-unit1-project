@@ -120,12 +120,10 @@ function updateScreen() {
 
 //function to check the key that's pressed
 function checkGuess(letter) {
-    //if letter is not in guessedLetters array then push the letter to the array
-    if (guessedLetters.indexOf(letter) === -1) {
+    //if letter is not in guessedLetters array then push the letter to the array, and if the letter isn't in the answer word then -1 the numGuessesRemaining
+    if (guessedLetters.indexOf(letter) === -1 && ansWord.indexOf(letter) === -1) {
         guessedLetters.push(letter);
-        //if the letter isn't in the answer word then -1 the numGuessesRemaining
-        if (ansWord.indexOf(letter) === -1) {
-            numGuessesRemaining--;
+        numGuessesRemaining--;
             //if numGuessesRemaining is 3 or less then change the color
             if (numGuessesRemaining <=3) {
                 document.getElementById("numGuesses").style.color = "#e12d2e";
@@ -138,9 +136,7 @@ function checkGuess(letter) {
                 }
             }
         }
-    }
-
-};
+    };
 
 
 //for game to move to next level
