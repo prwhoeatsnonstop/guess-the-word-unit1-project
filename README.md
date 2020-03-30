@@ -2,6 +2,8 @@
 
 Word-Guessing Game for category of songs
 
+#### Link to game: https://prwhoeatsnonstop.github.io/guess-the-word-unit1-project/
+
 ## Description
 
 Game with logic for General Assembly SEI 21, project 1.
